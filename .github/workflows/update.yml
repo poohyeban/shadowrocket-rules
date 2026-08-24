@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "30 21 * * *"
 
-  # 允许在 GitHub Actions 页面手动运行
+  # 允许手动运行
   workflow_dispatch:
 
 permissions:
@@ -29,10 +29,21 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Download upstream China domain list
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install maxminddb==3.1.1
+
+      - name: Prepare build directory
         run: |
           mkdir -p build
 
+      # =========================
+      # China Domain
+      # =========================
+
+      - name: Download China domain list
+        run: |
           curl \
             --fail \
             --location \
@@ -46,26 +57,85 @@ jobs:
             exit 1
           fi
 
-          echo "Downloaded upstream list:"
+          echo "Downloaded China domain list:"
           wc -l build/cn.txt
 
-      - name: Convert to Shadowrocket RULE-SET
+      - name: Generate China-Domain.list
         run: |
           python scripts/convert.py \
             build/cn.txt \
-            rules/China.list
+            rules/China-Domain.list
 
-          echo "Generated Shadowrocket rules:"
-          wc -l rules/China.list
+          if [ ! -s rules/China-Domain.list ]; then
+            echo "Error: China-Domain.list is empty."
+            exit 1
+          fi
+
+          echo "Generated China domain rules:"
+          wc -l rules/China-Domain.list
+
+      # =========================
+      # China GeoIP
+      # =========================
+
+      - name: Download GeoLite2 Country database
+        run: |
+          curl \
+            --fail \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --output build/GeoLite2-Country.mmdb \
+            https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
+
+          if [ ! -s build/GeoLite2-Country.mmdb ]; then
+            echo "Error: GeoLite2-Country.mmdb is empty."
+            exit 1
+          fi
+
+          echo "Downloaded GeoLite2 Country database:"
+          ls -lh build/GeoLite2-Country.mmdb
+
+      - name: Generate China GeoIP rules
+        run: |
+          python scripts/convert_geoip.py \
+            build/GeoLite2-Country.mmdb \
+            rules/GeoIP-CN.list \
+            rules/GeoIP-CN-NoResolve.list
+
+          if [ ! -s rules/GeoIP-CN.list ]; then
+            echo "Error: GeoIP-CN.list is empty."
+            exit 1
+          fi
+
+          if [ ! -s rules/GeoIP-CN-NoResolve.list ]; then
+            echo "Error: GeoIP-CN-NoResolve.list is empty."
+            exit 1
+          fi
+
+          echo "Generated GeoIP rules:"
+          wc -l rules/GeoIP-CN.list
+          wc -l rules/GeoIP-CN-NoResolve.list
+
+      # =========================
+      # Show changes
+      # =========================
 
       - name: Show changes
         run: |
           git status --short
           git diff --stat || true
 
+      # =========================
+      # Commit
+      # =========================
+
       - name: Commit updated rules
         run: |
-          git add rules/China.list
+          git add \
+            rules/China-Domain.list \
+            rules/GeoIP-CN.list \
+            rules/GeoIP-CN-NoResolve.list
 
           if git diff --cached --quiet; then
             echo "No rule changes detected."
@@ -75,5 +145,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git commit -m "Update China rules"
+          git commit -m "Update Shadowrocket rules"
           git push
