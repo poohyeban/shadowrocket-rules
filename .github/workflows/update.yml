@@ -1,0 +1,78 @@
+name: Update Shadowrocket Rules
+
+on:
+  # 每天北京时间 05:30 自动运行
+  schedule:
+    - cron: "30 21 * * *"
+
+  # 允许在 GitHub Actions 页面手动运行
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-shadowrocket-rules
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update rules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Download upstream China domain list
+        run: |
+          mkdir -p build
+
+          curl \
+            --fail \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --output build/cn.txt \
+            https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt
+
+          if [ ! -s build/cn.txt ]; then
+            echo "Error: downloaded cn.txt is empty."
+            exit 1
+          fi
+
+          echo "Downloaded upstream list:"
+          wc -l build/cn.txt
+
+      - name: Convert to Shadowrocket RULE-SET
+        run: |
+          python scripts/convert.py \
+            build/cn.txt \
+            rules/China.list
+
+          echo "Generated Shadowrocket rules:"
+          wc -l rules/China.list
+
+      - name: Show changes
+        run: |
+          git status --short
+          git diff --stat || true
+
+      - name: Commit updated rules
+        run: |
+          if git diff --quiet -- rules/China.list; then
+            echo "No rule changes detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add rules/China.list
+          git commit -m "Update China rules"
+          git push
