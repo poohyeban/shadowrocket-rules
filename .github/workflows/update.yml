@@ -3,7 +3,8 @@ name: Update Shadowrocket Rules
 on:
   # 每天北京时间 05:30 自动运行
   schedule:
-    - cron: "30 21 * * *"
+    - cron: "17 21 * * *"
+    - cron: "17 22 * * *"
 
   # 允许手动运行
   workflow_dispatch:
