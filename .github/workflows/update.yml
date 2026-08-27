@@ -1,7 +1,7 @@
 name: Update Shadowrocket Rules
 
 on:
-  # 每天北京时间 05:30 自动运行
+  # 每天北京时间 05:17 和 06:17 自动运行，第二次作为兜底
   schedule:
     - cron: "17 21 * * *"
     - cron: "17 22 * * *"
