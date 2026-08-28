@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import contextlib
+import io
 import subprocess
 import sys
 import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.convert import convert_file
 from scripts.filter_v2fly import filter_file, parse_v2fly_line
 
 
@@ -95,10 +98,55 @@ class V2FlyAttributeFilterTests(unittest.TestCase):
         self.assertEqual(parse_v2fly_line(regexp).attributes, frozenset())
 
     def test_release_style_attributes_are_supported(self):
-        line = "example.com:@foo:@ads\n"
+        line = "example.com:@foo,@ads,@!cn\n"
         output, _ = self.filter(line, include_attribute="ads")
         self.assertEqual(output, line.encode())
-        self.assertEqual(parse_v2fly_line(line).attributes, frozenset({"foo", "ads"}))
+        self.assertEqual(
+            parse_v2fly_line(line).attributes,
+            frozenset({"foo", "ads", "!cn"}),
+        )
+
+    def test_bang_attribute_is_supported(self):
+        line = "domain:example.com @!cn\n"
+        output, _ = self.filter(line, include_attribute="!cn")
+        self.assertEqual(output, line.encode())
+        self.assertEqual(parse_v2fly_line(line).attributes, frozenset({"!cn"}))
+
+    def test_selective_include_attribute_syntax_is_recognized(self):
+        line = "include:another-file @attr1 @-attr2 @-!cn\n"
+        self.assertEqual(
+            parse_v2fly_line(line).attributes,
+            frozenset({"attr1", "-attr2", "-!cn"}),
+        )
+
+    def test_cli_accepts_v2fly_special_attribute_names(self):
+        BUILD.mkdir(exist_ok=True)
+        cases = (
+            ("!cn", "domain:example.com @!cn\n"),
+            ("-attr2", "include:another-file @-attr2\n"),
+        )
+        for attribute, content in cases:
+            with self.subTest(attribute=attribute), tempfile.TemporaryDirectory(
+                dir=BUILD
+            ) as directory:
+                root = Path(directory)
+                source = root / "source.txt"
+                output = root / "output.txt"
+                source.write_text(content, encoding="utf-8")
+                result = subprocess.run(
+                    [
+                        sys.executable,
+                        str(SCRIPT),
+                        str(source),
+                        str(output),
+                        f"--include-attribute={attribute}",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(output.read_text(encoding="utf-8"), content)
 
     def test_standalone_metadata_is_not_treated_as_a_rule(self):
         output, stats = self.filter(
@@ -131,6 +179,36 @@ class V2FlyAttributeFilterTests(unittest.TestCase):
             )
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("not allowed with argument", result.stderr)
+
+    def test_ads_subset_may_convert_to_empty_when_every_rule_is_unsupported(self):
+        BUILD.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=BUILD) as directory:
+            root = Path(directory)
+            source = root / "source.txt"
+            filtered = root / "ads.txt"
+            output = root / "ads.list"
+            diagnostic = root / "unsupported.txt"
+            regexp = r"regexp:^example\S+\.com$ @ads"
+            source.write_text(regexp + "\n", encoding="utf-8")
+
+            filter_stats = filter_file(
+                source,
+                filtered,
+                include_attribute="ads",
+            )
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(
+                io.StringIO()
+            ):
+                convert_stats = convert_file(
+                    filtered,
+                    output,
+                    unsupported_output=diagnostic,
+                )
+
+            self.assertEqual(filter_stats.kept_rules, 1)
+            self.assertEqual(convert_stats.regex_skipped, 1)
+            self.assertEqual(output.read_bytes(), b"")
+            self.assertIn("unsafe-regexp", diagnostic.read_text(encoding="utf-8"))
 
     def test_output_is_deterministic_lf_utf8(self):
         content = "# 注释\r\ndomain:example.com\r\n"

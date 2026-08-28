@@ -104,6 +104,15 @@ jobs:
           echo "Downloaded OpenAI domain list:"
           wc -l build/openai.txt
 
+          if grep -nE \
+            '^[[:space:]]*include:[A-Za-z0-9!-]+([[:space:]]|#|$)' \
+            build/openai.txt > build/openai-includes.txt; then
+            echo "Error: OpenAI upstream contains include: directives."
+            echo "Included lists must be resolved before publishing complete rules."
+            sed -n '1,20p' build/openai-includes.txt
+            exit 1
+          fi
+
       - name: Generate OpenAI attribute views
         run: |
           python scripts/filter_v2fly.py \
@@ -115,6 +124,46 @@ jobs:
             build/openai.txt \
             build/openai-ads.txt \
             --include-attribute ads
+
+          count_ads_rules() {
+            awk '
+              {
+                line = $0
+                sub(/#.*/, "", line)
+                if (line ~ /(^|[[:space:]:,])@ads([[:space:]:,]|$)/) {
+                  count++
+                }
+              }
+              END { print count + 0 }
+            ' "$1"
+          }
+
+          count_rule_lines() {
+            awk '
+              {
+                line = $0
+                sub(/#.*/, "", line)
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
+                if (line != "" && line !~ /^[@&]/) {
+                  count++
+                }
+              }
+              END { print count + 0 }
+            ' "$1"
+          }
+
+          upstream_ads_count="$(count_ads_rules build/openai.txt)"
+          filtered_ads_count="$(count_ads_rules build/openai-ads.txt)"
+          filtered_rule_count="$(count_rule_lines build/openai-ads.txt)"
+
+          if [ "$filtered_ads_count" -ne "$upstream_ads_count" ] \
+            || [ "$filtered_rule_count" -ne "$upstream_ads_count" ]; then
+            echo "Error: OpenAI @ads attribute filtering produced an inconsistent view."
+            echo "Upstream @ads rules: $upstream_ads_count"
+            echo "Filtered @ads rules: $filtered_ads_count"
+            echo "Filtered total rules: $filtered_rule_count"
+            exit 1
+          fi
 
       - name: Generate OpenAI rules
         run: |
@@ -140,20 +189,6 @@ jobs:
 
           if [ ! -s rules/OpenAI-NoAds.list ]; then
             echo "Error: OpenAI-NoAds.list is empty."
-            exit 1
-          fi
-
-          if awk '
-            {
-              line = $0
-              sub(/#.*/, "", line)
-              if (line ~ /(^|[[:space:]]|:)@ads([[:space:]:]|$)/) {
-                found = 1
-              }
-            }
-            END { exit(found ? 0 : 1) }
-          ' build/openai.txt && [ ! -s rules/OpenAI-Ads.list ]; then
-            echo "Error: upstream contains @ads rules but OpenAI-Ads.list is empty."
             exit 1
           fi
 

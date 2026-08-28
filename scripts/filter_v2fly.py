@@ -14,11 +14,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-_ATTRIBUTE_NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*$")
+_ATTRIBUTE_NAME_RE = re.compile(r"^-?[A-Za-z0-9!]+$")
 _RELEASE_ATTRIBUTE_SUFFIX_RE = re.compile(
-    r"(?::@[A-Za-z0-9][A-Za-z0-9_-]*)+$"
+    r":@-?[A-Za-z0-9!]+(?:(?::|,)@-?[A-Za-z0-9!]+)*$"
 )
-_RELEASE_ATTRIBUTE_RE = re.compile(r":@([A-Za-z0-9][A-Za-z0-9_-]*)")
+_RELEASE_ATTRIBUTE_RE = re.compile(r"@(-?[A-Za-z0-9!]+)")
 
 
 @dataclass(frozen=True)
@@ -40,7 +40,8 @@ class FilterStats:
 def _validate_attribute_name(attribute: str) -> str:
     if _ATTRIBUTE_NAME_RE.fullmatch(attribute) is None:
         raise argparse.ArgumentTypeError(
-            "attribute must contain only letters, digits, underscores, or hyphens"
+            "attribute must use v2fly syntax: an optional leading hyphen, "
+            "then letters, digits, or exclamation marks"
         )
     return attribute
 
