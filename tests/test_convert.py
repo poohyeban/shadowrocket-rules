@@ -60,6 +60,31 @@ class V2FlyConversionTests(unittest.TestCase):
         self.assertEqual(stats.regex_skipped, 1)
         self.assertTrue(any(reason.startswith("unsafe-regexp") for reason in stats.warning_reasons))
 
+    def test_openai_unbounded_regex_is_skipped_without_approximation(self):
+        regexp = r"regexp:^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$"
+        BUILD.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=BUILD) as directory:
+            root = Path(directory)
+            source = root / "source.txt"
+            output = root / "output.list"
+            diagnostic = root / "unsupported.txt"
+            source.write_text(regexp + "\n", encoding="utf-8")
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                stats = convert_file(source, output, unsupported_output=diagnostic)
+
+            rendered = output.read_text(encoding="utf-8")
+            self.assertEqual(rendered, "")
+            self.assertNotIn("DOMAIN-WILDCARD", rendered)
+            self.assertNotIn("URL-REGEX", rendered)
+            self.assertNotIn("chatgpt-async-webps-prod-*-*", rendered)
+            self.assertEqual(stats.regex_skipped, 1)
+            self.assertTrue(
+                any(reason.startswith("unsafe-regexp") for reason in stats.warning_reasons)
+            )
+            diagnostic_text = diagnostic.read_text(encoding="utf-8")
+            self.assertIn("unsafe-regexp", diagnostic_text)
+            self.assertIn(regexp, diagnostic_text)
+
     def test_deduplication_and_sort_are_deterministic(self):
         content = "domain:b.example\ndomain:a.example\ndomain:b.example\n"
         first, first_stats = self.convert(content)

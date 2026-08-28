@@ -83,6 +83,86 @@ jobs:
           wc -l rules/China-Domain.list
 
       # =========================
+      # OpenAI
+      # =========================
+
+      - name: Download OpenAI domain list
+        run: |
+          curl \
+            --fail \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --output build/openai.txt \
+            https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai
+
+          if [ ! -s build/openai.txt ]; then
+            echo "Error: downloaded OpenAI domain list is empty."
+            exit 1
+          fi
+
+          echo "Downloaded OpenAI domain list:"
+          wc -l build/openai.txt
+
+      - name: Generate OpenAI attribute views
+        run: |
+          python scripts/filter_v2fly.py \
+            build/openai.txt \
+            build/openai-noads.txt \
+            --exclude-attribute ads
+
+          python scripts/filter_v2fly.py \
+            build/openai.txt \
+            build/openai-ads.txt \
+            --include-attribute ads
+
+      - name: Generate OpenAI rules
+        run: |
+          python scripts/convert.py \
+            build/openai.txt \
+            rules/OpenAI.list \
+            --unsupported-output build/unsupported-openai.txt
+
+          python scripts/convert.py \
+            build/openai-noads.txt \
+            rules/OpenAI-NoAds.list \
+            --unsupported-output build/unsupported-openai-noads.txt
+
+          python scripts/convert.py \
+            build/openai-ads.txt \
+            rules/OpenAI-Ads.list \
+            --unsupported-output build/unsupported-openai-ads.txt
+
+          if [ ! -s rules/OpenAI.list ]; then
+            echo "Error: OpenAI.list is empty."
+            exit 1
+          fi
+
+          if [ ! -s rules/OpenAI-NoAds.list ]; then
+            echo "Error: OpenAI-NoAds.list is empty."
+            exit 1
+          fi
+
+          if awk '
+            {
+              line = $0
+              sub(/#.*/, "", line)
+              if (line ~ /(^|[[:space:]]|:)@ads([[:space:]:]|$)/) {
+                found = 1
+              }
+            }
+            END { exit(found ? 0 : 1) }
+          ' build/openai.txt && [ ! -s rules/OpenAI-Ads.list ]; then
+            echo "Error: upstream contains @ads rules but OpenAI-Ads.list is empty."
+            exit 1
+          fi
+
+          echo "Generated OpenAI rules:"
+          wc -l rules/OpenAI.list
+          wc -l rules/OpenAI-NoAds.list
+          wc -l rules/OpenAI-Ads.list
+
+      # =========================
       # AdGuard DNS Filter
       # =========================
 
@@ -181,7 +261,10 @@ jobs:
             rules/China-Domain.list \
             rules/Ad-Domain.list \
             rules/GeoIP-CN.list \
-            rules/GeoIP-CN-NoResolve.list
+            rules/GeoIP-CN-NoResolve.list \
+            rules/OpenAI.list \
+            rules/OpenAI-NoAds.list \
+            rules/OpenAI-Ads.list
 
           if git diff --cached --quiet; then
             echo "No rule changes detected."
