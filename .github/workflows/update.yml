@@ -71,16 +71,16 @@ jobs:
         run: |
           python scripts/convert.py \
             build/cn.txt \
-            rules/China-Domain.list \
+            rules/China/China-Domain.list \
             --unsupported-output build/unsupported-v2fly-rules.txt
 
-          if [ ! -s rules/China-Domain.list ]; then
+          if [ ! -s rules/China/China-Domain.list ]; then
             echo "Error: China-Domain.list is empty."
             exit 1
           fi
 
           echo "Generated China domain rules:"
-          wc -l rules/China-Domain.list
+          wc -l rules/China/China-Domain.list
 
       # =========================
       # OpenAI
@@ -128,7 +128,7 @@ jobs:
           count_ads_rules() {
             awk '
               {
-                line = $0
+                line = tolower($0)
                 sub(/#.*/, "", line)
                 if (line ~ /(^|[[:space:]:,])@ads([[:space:]:,]|$)/) {
                   count++
@@ -169,33 +169,33 @@ jobs:
         run: |
           python scripts/convert.py \
             build/openai.txt \
-            rules/OpenAI.list \
+            rules/OpenAI/OpenAI.list \
             --unsupported-output build/unsupported-openai.txt
 
           python scripts/convert.py \
             build/openai-noads.txt \
-            rules/OpenAI-NoAds.list \
+            rules/OpenAI/OpenAI-NoAds.list \
             --unsupported-output build/unsupported-openai-noads.txt
 
           python scripts/convert.py \
             build/openai-ads.txt \
-            rules/OpenAI-Ads.list \
+            rules/OpenAI/OpenAI-Ads.list \
             --unsupported-output build/unsupported-openai-ads.txt
 
-          if [ ! -s rules/OpenAI.list ]; then
+          if [ ! -s rules/OpenAI/OpenAI.list ]; then
             echo "Error: OpenAI.list is empty."
             exit 1
           fi
 
-          if [ ! -s rules/OpenAI-NoAds.list ]; then
+          if [ ! -s rules/OpenAI/OpenAI-NoAds.list ]; then
             echo "Error: OpenAI-NoAds.list is empty."
             exit 1
           fi
 
           echo "Generated OpenAI rules:"
-          wc -l rules/OpenAI.list
-          wc -l rules/OpenAI-NoAds.list
-          wc -l rules/OpenAI-Ads.list
+          wc -l rules/OpenAI/OpenAI.list
+          wc -l rules/OpenAI/OpenAI-NoAds.list
+          wc -l rules/OpenAI/OpenAI-Ads.list
 
       # =========================
       # AdGuard DNS Filter
@@ -223,16 +223,16 @@ jobs:
         run: |
           python scripts/convert_adguard.py \
             build/adguard-filter.txt \
-            rules/Ad-Domain.list \
+            rules/AdGuard/Ad-Domain.list \
             --unsupported-output build/unsupported-adguard-rules.txt
 
-          if [ ! -s rules/Ad-Domain.list ]; then
+          if [ ! -s rules/AdGuard/Ad-Domain.list ]; then
             echo "Error: Ad-Domain.list is empty."
             exit 1
           fi
 
           echo "Generated AdGuard domain rules:"
-          wc -l rules/Ad-Domain.list
+          wc -l rules/AdGuard/Ad-Domain.list
 
       # =========================
       # China GeoIP
@@ -260,22 +260,22 @@ jobs:
         run: |
           python scripts/convert_geoip.py \
             build/GeoLite2-Country.mmdb \
-            rules/GeoIP-CN.list \
-            rules/GeoIP-CN-NoResolve.list
+            rules/China/GeoIP-CN.list \
+            rules/China/GeoIP-CN-NoResolve.list
 
-          if [ ! -s rules/GeoIP-CN.list ]; then
+          if [ ! -s rules/China/GeoIP-CN.list ]; then
             echo "Error: GeoIP-CN.list is empty."
             exit 1
           fi
 
-          if [ ! -s rules/GeoIP-CN-NoResolve.list ]; then
+          if [ ! -s rules/China/GeoIP-CN-NoResolve.list ]; then
             echo "Error: GeoIP-CN-NoResolve.list is empty."
             exit 1
           fi
 
           echo "Generated GeoIP rules:"
-          wc -l rules/GeoIP-CN.list
-          wc -l rules/GeoIP-CN-NoResolve.list
+          wc -l rules/China/GeoIP-CN.list
+          wc -l rules/China/GeoIP-CN-NoResolve.list
 
       # =========================
       # Show changes
@@ -292,14 +292,7 @@ jobs:
 
       - name: Commit updated rules
         run: |
-          git add \
-            rules/China-Domain.list \
-            rules/Ad-Domain.list \
-            rules/GeoIP-CN.list \
-            rules/GeoIP-CN-NoResolve.list \
-            rules/OpenAI.list \
-            rules/OpenAI-NoAds.list \
-            rules/OpenAI-Ads.list
+          git add -A -- rules/
 
           if git diff --cached --quiet; then
             echo "No rule changes detected."

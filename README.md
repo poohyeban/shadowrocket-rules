@@ -4,19 +4,28 @@ Automatically generated, deterministic rulesets for Shadowrocket.
 
 ## Generated rules
 
-- `rules/China-Domain.list`: China domain rules from
+Generated rule files are organized by service or rule family under `rules/`:
+
+```text
+rules/
+├── China/
+├── OpenAI/
+└── AdGuard/
+```
+
+- `rules/China/China-Domain.list`: China domain rules from
   [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community).
-- `rules/OpenAI.list`: v2fly OpenAI rules, including rules carrying the
+- `rules/OpenAI/OpenAI.list`: v2fly OpenAI rules, including rules carrying the
   upstream `@ads` attribute.
-- `rules/OpenAI-NoAds.list`: v2fly OpenAI rules excluding rules carrying the
-  upstream `@ads` attribute.
-- `rules/OpenAI-Ads.list`: only the subset of v2fly OpenAI rules carrying the
-  upstream `@ads` attribute, so it can be assigned a separate policy.
-- `rules/Ad-Domain.list`: DNS-level advertising and tracking rules safely
+- `rules/OpenAI/OpenAI-NoAds.list`: v2fly OpenAI rules excluding rules carrying
+  the upstream `@ads` attribute.
+- `rules/OpenAI/OpenAI-Ads.list`: only the subset of v2fly OpenAI rules carrying
+  the upstream `@ads` attribute, so it can be assigned a separate policy.
+- `rules/AdGuard/Ad-Domain.list`: DNS-level advertising and tracking rules safely
   converted from the official
   [AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter).
-- `rules/GeoIP-CN.list`: China IPv4 and IPv6 CIDR rules.
-- `rules/GeoIP-CN-NoResolve.list`: the same CIDR rules with `no-resolve`.
+- `rules/China/GeoIP-CN.list`: China IPv4 and IPv6 CIDR rules.
+- `rules/China/GeoIP-CN-NoResolve.list`: the same CIDR rules with `no-resolve`.
 
 ## Conversion policy
 
@@ -46,7 +55,7 @@ does not create a commit.
 To route the complete OpenAI ruleset through one policy:
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI.list,OpenAI
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI/OpenAI.list,OpenAI
 ```
 
 To assign the upstream `@ads` subset a separate policy, put that narrower rule
@@ -54,8 +63,8 @@ before the remaining OpenAI rules because Shadowrocket uses first-match
 semantics:
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI-Ads.list,REJECT
-RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI-NoAds.list,OpenAI
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI/OpenAI-Ads.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI/OpenAI-NoAds.list,OpenAI
 ```
 
 `OpenAI-Ads.list` is not this repository's own judgment that an endpoint is an
@@ -66,7 +75,7 @@ v2fly's upstream `@ads` metadata, and it does not bind those entries to
 ## Licensing
 
 The repository's conversion code is covered by the root MIT license.
-`rules/Ad-Domain.list` is derived from AdGuard DNS Filter and remains subject to
-the upstream [GNU GPLv3 license](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE).
+`rules/AdGuard/Ad-Domain.list` is derived from AdGuard DNS Filter and remains
+subject to the upstream [GNU GPLv3 license](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE).
 The v2fly and GeoLite-derived outputs remain subject to their respective
 upstream data licenses and notices.

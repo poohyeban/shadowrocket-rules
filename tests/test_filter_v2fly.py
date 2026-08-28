@@ -62,6 +62,17 @@ class V2FlyAttributeFilterTests(unittest.TestCase):
         )
         self.assertEqual(output, b"full:ads.example.com @ads\n")
 
+    def test_source_attribute_matching_is_case_insensitive(self):
+        line = "full:example.com @ADS @Foo123\n"
+        for attribute in ("ads", "ADS"):
+            with self.subTest(attribute=attribute):
+                output, _ = self.filter(line, include_attribute=attribute)
+                self.assertEqual(output, line.encode())
+        self.assertEqual(
+            parse_v2fly_line(line).attributes,
+            frozenset({"ads", "foo123"}),
+        )
+
     def test_multiple_attributes_are_recognized(self):
         output, _ = self.filter(
             "full:example.com @foo @ads\n",
@@ -98,25 +109,25 @@ class V2FlyAttributeFilterTests(unittest.TestCase):
         self.assertEqual(parse_v2fly_line(regexp).attributes, frozenset())
 
     def test_release_style_attributes_are_supported(self):
-        line = "example.com:@foo,@ads,@!cn\n"
+        line = "example.com:@ADS,@!CN\n"
         output, _ = self.filter(line, include_attribute="ads")
         self.assertEqual(output, line.encode())
         self.assertEqual(
             parse_v2fly_line(line).attributes,
-            frozenset({"foo", "ads", "!cn"}),
+            frozenset({"ads", "!cn"}),
         )
 
     def test_bang_attribute_is_supported(self):
-        line = "domain:example.com @!cn\n"
+        line = "domain:example.com @!CN\n"
         output, _ = self.filter(line, include_attribute="!cn")
         self.assertEqual(output, line.encode())
         self.assertEqual(parse_v2fly_line(line).attributes, frozenset({"!cn"}))
 
     def test_selective_include_attribute_syntax_is_recognized(self):
-        line = "include:another-file @attr1 @-attr2 @-!cn\n"
+        line = "include:another-file @-ATTR @-!CN\n"
         self.assertEqual(
             parse_v2fly_line(line).attributes,
-            frozenset({"attr1", "-attr2", "-!cn"}),
+            frozenset({"-attr", "-!cn"}),
         )
 
     def test_cli_accepts_v2fly_special_attribute_names(self):
@@ -147,6 +158,56 @@ class V2FlyAttributeFilterTests(unittest.TestCase):
                 )
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertEqual(output.read_text(encoding="utf-8"), content)
+
+    def test_cli_attribute_matching_is_case_insensitive(self):
+        BUILD.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=BUILD) as directory:
+            root = Path(directory)
+            source = root / "source.txt"
+            included = root / "included.txt"
+            excluded = root / "excluded.txt"
+            source.write_text(
+                "domain:plain.example\nfull:ads.example @ADS\n",
+                encoding="utf-8",
+            )
+
+            include_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPT),
+                    str(source),
+                    str(included),
+                    "--include-attribute",
+                    "ADS",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            exclude_result = subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPT),
+                    str(source),
+                    str(excluded),
+                    "--exclude-attribute",
+                    "ADS",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(include_result.returncode, 0, include_result.stderr)
+            self.assertEqual(exclude_result.returncode, 0, exclude_result.stderr)
+            self.assertEqual(
+                included.read_text(encoding="utf-8"),
+                "full:ads.example @ADS\n",
+            )
+            self.assertEqual(
+                excluded.read_text(encoding="utf-8"),
+                "domain:plain.example\n",
+            )
 
     def test_standalone_metadata_is_not_treated_as_a_rule(self):
         output, stats = self.filter(

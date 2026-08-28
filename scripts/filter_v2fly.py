@@ -43,7 +43,7 @@ def _validate_attribute_name(attribute: str) -> str:
             "attribute must use v2fly syntax: an optional leading hyphen, "
             "then letters, digits, or exclamation marks"
         )
-    return attribute
+    return attribute.lower()
 
 
 def parse_v2fly_line(raw_line: str) -> ParsedLine:
@@ -62,13 +62,14 @@ def parse_v2fly_line(raw_line: str) -> ParsedLine:
     # Source data writes attributes as separate whitespace-delimited tokens.
     for token in content.split()[1:]:
         if token.startswith("@") and _ATTRIBUTE_NAME_RE.fullmatch(token[1:]):
-            attributes.add(token[1:])
+            attributes.add(token[1:].lower())
 
     # Release exports append one or more :@attribute suffixes to the rule.
     release_suffix = _RELEASE_ATTRIBUTE_SUFFIX_RE.search(first_token)
     if release_suffix is not None:
         attributes.update(
-            _RELEASE_ATTRIBUTE_RE.findall(release_suffix.group(0))
+            attribute.lower()
+            for attribute in _RELEASE_ATTRIBUTE_RE.findall(release_suffix.group(0))
         )
 
     return ParsedLine("rule", frozenset(attributes))
@@ -89,6 +90,11 @@ def filter_file(
 
     if include_attribute is not None and exclude_attribute is not None:
         raise ValueError("include_attribute and exclude_attribute are mutually exclusive")
+
+    if include_attribute is not None:
+        include_attribute = include_attribute.lower()
+    if exclude_attribute is not None:
+        exclude_attribute = exclude_attribute.lower()
 
     stats = FilterStats()
     output.parent.mkdir(parents=True, exist_ok=True)
