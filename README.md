@@ -180,6 +180,10 @@ retained in the generated routing subset. Exclusions use exact source-entry
 matching after normalization. They do not trigger suffix inference, wildcard
 expansion, or semantic compression.
 
+The exclusion snapshot may contain zero active entries. An empty or
+comments-only exclusion file means that no reviewed Help Center entries are
+excluded from routing.
+
 The documented allowlist includes shared infrastructure from providers such as
 Cloudflare, WorkOS, Intercom, Stripe, Sentry, Datadog, SendGrid, and Apple.
 These dependencies remain recorded in the complete snapshot because ChatGPT

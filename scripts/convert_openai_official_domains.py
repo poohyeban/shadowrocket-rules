@@ -57,7 +57,12 @@ def parse_source_line(raw_line: str, line_number: int) -> DomainRule | None:
     return DomainRule("DOMAIN", hostname)
 
 
-def parse_file(source: Path, description: str) -> tuple[set[DomainRule], int]:
+def parse_file(
+    source: Path,
+    description: str,
+    *,
+    allow_empty: bool = False,
+) -> tuple[set[DomainRule], int]:
     rules: set[DomainRule] = set()
     entry_count = 0
 
@@ -69,7 +74,7 @@ def parse_file(source: Path, description: str) -> tuple[set[DomainRule], int]:
             entry_count += 1
             rules.add(rule)
 
-    if not rules:
+    if not rules and not allow_empty:
         raise OfficialDomainError(f"{description} contains no valid entries")
 
     return rules, entry_count
@@ -84,7 +89,11 @@ def convert_file(
     exclusions: set[DomainRule] = set()
 
     if exclude_file is not None:
-        exclusions, _ = parse_file(exclude_file, "official domain exclusion source")
+        exclusions, _ = parse_file(
+            exclude_file,
+            "official domain exclusion source",
+            allow_empty=True,
+        )
         unknown_exclusions = exclusions - rules
         if unknown_exclusions:
             rendered = ", ".join(

@@ -105,6 +105,50 @@ class OfficialDomainConversionTests(unittest.TestCase):
         self.assertEqual(stats.excluded_entries, 1)
         self.assertEqual(stats.final_rules, 2)
 
+    def test_completely_empty_exclusion_file_excludes_nothing(self):
+        output, stats = self.convert(
+            "openai.com\nchatgpt.com\n",
+            "",
+        )
+        self.assertEqual(
+            output,
+            b"DOMAIN,chatgpt.com\nDOMAIN,openai.com\n",
+        )
+        self.assertEqual(stats.source_entries, 2)
+        self.assertEqual(stats.excluded_entries, 0)
+        self.assertEqual(stats.final_rules, 2)
+
+    def test_comments_only_exclusion_file_excludes_nothing(self):
+        output, stats = self.convert(
+            "openai.com\nchatgpt.com\n",
+            "# No exclusions currently.\n\n"
+            "# Keep this file for reviewed routing policy.\n",
+        )
+        self.assertEqual(
+            output,
+            b"DOMAIN,chatgpt.com\nDOMAIN,openai.com\n",
+        )
+        self.assertEqual(stats.excluded_entries, 0)
+        self.assertEqual(stats.final_rules, 2)
+
+    def test_blank_lines_only_exclusion_file_excludes_nothing(self):
+        output, stats = self.convert(
+            "openai.com\nchatgpt.com\n",
+            "\n\n   \n",
+        )
+        self.assertEqual(
+            output,
+            b"DOMAIN,chatgpt.com\nDOMAIN,openai.com\n",
+        )
+        self.assertEqual(stats.excluded_entries, 0)
+        self.assertEqual(stats.final_rules, 2)
+
+    def test_official_source_still_may_not_be_empty(self):
+        for content in ("", "\n\n", "# comment only\n"):
+            with self.subTest(content=content):
+                with self.assertRaises(OfficialDomainError):
+                    self.convert(content)
+
     def test_exclusion_does_not_expand_or_infer_suffix_matches(self):
         output, _ = self.convert(
             "*.intercom.io\nfoo.intercom.io\n",
