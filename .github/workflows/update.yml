@@ -90,7 +90,8 @@ jobs:
         run: |
           python scripts/convert_openai_official_domains.py \
             data/OpenAI/official-domains.txt \
-            rules/OpenAI/Sources/OpenAI-Official-Domain.list
+            rules/OpenAI/Sources/OpenAI-Official-Domain.list \
+            --exclude-file data/OpenAI/official-domains-excluded.txt
 
           if [ ! -s rules/OpenAI/Sources/OpenAI-Official-Domain.list ]; then
             echo "Error: OpenAI-Official-Domain.list is empty."

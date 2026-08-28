@@ -41,9 +41,9 @@ are also available as `China.list` and `OpenAI.list`.
 ### OpenAI
 
 - [`rules/OpenAI/OpenAI.list`](rules/OpenAI/OpenAI.list) combines OpenAI-related
-  v2fly domains, the repository's reviewed snapshot of the official OpenAI
-  allowlist, explicitly tracked OpenAI-owned ASN networks, and official ChatGPT
-  Voice IP prefixes.
+  v2fly domains, a filtered routing subset derived from the reviewed OpenAI Help
+  Center allowlist, explicitly tracked OpenAI-owned ASN networks, and official
+  ChatGPT Voice IP prefixes.
 - [`rules/OpenAI/OpenAI-NoResolve.list`](rules/OpenAI/OpenAI-NoResolve.list)
   contains the same logical domain and IP sets, but every IP rule carries
   `no-resolve`.
@@ -122,7 +122,27 @@ address used on the Chinese Internet.
 
 ### OpenAI
 
-OpenAI is a multi-source aggregate.
+OpenAI is a routing-oriented, multi-source aggregate. It is not a verbatim copy
+of one upstream and is not an OpenAI enterprise firewall allowlist:
+
+```text
+OpenAI.list
+|
++-- v2fly OpenAI domains
+|   `-- only safely convertible entries
+|
++-- reviewed OpenAI Help Center domains
+|   +-- full snapshot stored in official-domains.txt
+|   `-- shared or uncertain dependencies removed by
+|       official-domains-excluded.txt
+|
++-- explicitly tracked OpenAI ASN networks
+|
+`-- official ChatGPT Voice IP prefixes
+```
+
+`OpenAI-NoResolve.list` contains the same logical rules. Its `IP-CIDR` and
+`IP-CIDR6` entries additionally carry `no-resolve`.
 
 #### v2fly domains
 
@@ -136,11 +156,54 @@ https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai
 
 OpenAI publishes an allowlist in its Help Center article
 [Network recommendations for ChatGPT errors on web and apps](https://help.openai.com/en/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps).
-The workflow does **not** scrape this page. Instead, the repository maintains a
-manually reviewed snapshot at
-[`data/OpenAI/official-domains.txt`](data/OpenAI/official-domains.txt), which is
-converted to
-[`OpenAI-Official-Domain.list`](rules/OpenAI/Sources/OpenAI-Official-Domain.list).
+The Help Center list describes dependencies to allow for OpenAI and ChatGPT
+functionality. It is not an authoritative inventory of domains owned by OpenAI.
+The workflow does **not** scrape this page. Instead, the repository maintains:
+
+- [`data/OpenAI/official-domains.txt`](data/OpenAI/official-domains.txt), the
+  complete manually reviewed snapshot of the documented allowlist; and
+- [`data/OpenAI/official-domains-excluded.txt`](data/OpenAI/official-domains-excluded.txt),
+  the explicit source entries that this repository does not classify as OpenAI
+  traffic by default.
+
+The generated
+[`OpenAI-Official-Domain.list`](rules/OpenAI/Sources/OpenAI-Official-Domain.list)
+is the exact normalized source-entry set difference:
+
+```text
+official-domains.txt - official-domains-excluded.txt
+```
+
+At the current reviewed snapshot, all 29 documented entries remain in the full
+snapshot, 16 entries are excluded from default routing, and 13 entries are
+retained in the generated routing subset. Exclusions use exact source-entry
+matching after normalization. They do not trigger suffix inference, wildcard
+expansion, or semantic compression.
+
+The documented allowlist includes shared infrastructure from providers such as
+Cloudflare, WorkOS, Intercom, Stripe, Sentry, Datadog, SendGrid, and Apple.
+These dependencies remain recorded in the complete snapshot because ChatGPT
+may use them for authentication, challenges, telemetry, support, payments,
+email, or other functionality. Routing an entire shared hostname or namespace
+through an OpenAI policy could also capture unrelated traffic from other sites
+or applications, so the default routing aggregate excludes them.
+
+`cdn.openaimerge.com` is listed by OpenAI, but its ownership or dedicated-use
+status has not been established sufficiently for this repository's strict
+routing policy. It is currently excluded pending manual review; reliable
+evidence that it is OpenAI-controlled or dedicated OpenAI infrastructure would
+justify reviewing that decision.
+
+Excluded entries are not useless or erroneous. Users whose network design
+requires those dependencies to follow the same route can add them separately.
+Conversely, exclusions apply only to the Help Center source and do not filter an
+independently sourced v2fly rule with the same hostname.
+
+**Do not use `OpenAI.list` or `OpenAI-NoResolve.list` as a replacement for
+OpenAI's current enterprise firewall allowlist.** For complete ChatGPT
+dependency allowlisting, consult the current official documentation. This
+repository optimizes for traffic-routing precision, not maximum functionality
+allowlisting coverage.
 
 The Help Center HTML is not a stable, reliable machine-readable CI source, and
 command-line fetching has previously returned HTTP 403. Manual maintenance is
@@ -305,7 +368,7 @@ domain or network set.
 | Area | Limitation | Current behavior | Possible future direction |
 | --- | --- | --- | --- |
 | v2fly regexp | Some hostname languages are unbounded or not fully anchored | Skip with `unsafe-regexp` diagnostics | Add more exact, provably finite mappings |
-| OpenAI official domains | Help Center HTML is manually reviewed rather than synchronized by CI | Use the repository snapshot; accept a possible stale window | Investigate reliable change detection without fragile scraping |
+| OpenAI official domains | The Help Center allowlist includes shared dependencies and is manually reviewed rather than synchronized by CI | Preserve the complete snapshot, then publish its exact difference from explicit routing exclusions | Review exclusions and investigate reliable change detection without fragile scraping |
 | OpenAI v2fly regexp | The current `\S+` Web PubSub rule is unbounded | Skip without wildcard approximation | Revisit only if an exact representation becomes available |
 | ChatGPT Voice | CIDR rules do not constrain protocol or destination port | Deliberately match all traffic to listed Voice prefixes | Test reliable compound Shadowrocket rules before narrowing |
 | OpenAI ASN | GeoLite2 ASN data may lag live routing and covers only tracked ASNs | Emit prefixes found for AS401518 and AS401864 | Periodically review ASN ownership and mapping freshness |
@@ -437,7 +500,7 @@ When generation matches the tracked files exactly, the commit step reports
 An upstream, schema, download, conversion, or validation failure stops the run
 instead of committing a partially generated ruleset. The workflow never stages
 `build/`, and it does not automatically modify the manually maintained OpenAI
-domain snapshot.
+domain snapshot or routing-exclusion snapshot.
 
 The OpenAI v2fly source has an additional case-insensitive fail-closed guard for
 valid `include:` directives. Recursive include resolution is not implemented;
@@ -460,8 +523,10 @@ that must remain unsupported.
 
 When reviewing the OpenAI Help Center allowlist, update
 `data/OpenAI/official-domains.txt` manually, preserve its source and verification
-metadata, regenerate `OpenAI-Official-Domain.list`, run the tests, and review the
-exact diff. Do not make CI depend on unaudited HTML scraping.
+metadata, review `data/OpenAI/official-domains-excluded.txt` against the new
+snapshot, regenerate `OpenAI-Official-Domain.list`, run the tests, and review the
+exact diff. Every exclusion must still exist in the full snapshot or conversion
+fails closed. Do not make CI depend on unaudited HTML scraping.
 
 Tracked OpenAI ASN ownership and GeoLite2 mappings should also be reviewed
 periodically. Third-party infrastructure should be added only with a narrowly

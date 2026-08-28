@@ -44,7 +44,13 @@ class WorkflowGuardTests(unittest.TestCase):
     def test_workflow_uses_local_reviewed_official_domain_source(self):
         workflow = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("data/OpenAI/official-domains.txt", workflow)
+        self.assertIn("data/OpenAI/official-domains-excluded.txt", workflow)
         self.assertIn("scripts/convert_openai_official_domains.py", workflow)
+        self.assertIn(
+            "rules/OpenAI/Sources/OpenAI-Official-Domain.list \\\n"
+            "            --exclude-file data/OpenAI/official-domains-excluded.txt",
+            workflow,
+        )
         self.assertNotIn("help.openai.com", workflow)
 
     def test_workflow_uses_only_explicit_openai_asns(self):

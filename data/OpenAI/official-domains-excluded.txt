@@ -1,0 +1,30 @@
+# Shared / third-party infrastructure intentionally excluded
+# from the default OpenAI routing ruleset.
+#
+# These entries remain present in official-domains.txt because
+# they are part of OpenAI's documented functionality allowlist.
+#
+# They are excluded here because routing an entire shared third-party
+# hostname or namespace through the OpenAI policy could also capture
+# unrelated traffic from other services.
+
+*.ct.sendgrid.net
+*.intercom.io
+*.intercomcdn.com
+cdn.workos.com
+challenges.cloudflare.com
+forwarder.workos.com
+humb.apple.com
+images.workoscdn.com
+js.intercomcdn.com
+js.stripe.com
+o207216.ingest.sentry.io
+o33249.ingest.sentry.io
+rum.browser-intake-datadoghq.com
+setup.workos.com
+workos.imgix.net
+
+# Listed by OpenAI, but ownership / dedicated-use status is not
+# sufficiently established for this repository's strict routing policy.
+# Keep excluded until manually reviewed.
+cdn.openaimerge.com
