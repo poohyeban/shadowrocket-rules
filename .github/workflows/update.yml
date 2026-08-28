@@ -104,7 +104,7 @@ jobs:
           echo "Downloaded OpenAI domain list:"
           wc -l build/openai.txt
 
-          if grep -nE \
+          if grep -niE \
             '^[[:space:]]*include:[A-Za-z0-9!-]+([[:space:]]|#|$)' \
             build/openai.txt > build/openai-includes.txt; then
             echo "Error: OpenAI upstream contains include: directives."
