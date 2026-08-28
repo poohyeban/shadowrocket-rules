@@ -86,116 +86,175 @@ jobs:
       # OpenAI
       # =========================
 
-      - name: Download OpenAI domain list
+      - name: Generate reviewed OpenAI official domain rules
+        run: |
+          python scripts/convert_openai_official_domains.py \
+            data/OpenAI/official-domains.txt \
+            rules/OpenAI/Sources/OpenAI-Official-Domain.list
+
+          if [ ! -s rules/OpenAI/Sources/OpenAI-Official-Domain.list ]; then
+            echo "Error: OpenAI-Official-Domain.list is empty."
+            exit 1
+          fi
+
+          echo "Generated reviewed OpenAI official domain rules:"
+          wc -l rules/OpenAI/Sources/OpenAI-Official-Domain.list
+
+      - name: Download v2fly OpenAI domain list
         run: |
           curl \
             --fail \
             --location \
             --retry 3 \
             --retry-delay 5 \
-            --output build/openai.txt \
+            --output build/openai-v2fly.txt \
             https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai
 
-          if [ ! -s build/openai.txt ]; then
-            echo "Error: downloaded OpenAI domain list is empty."
+          if [ ! -s build/openai-v2fly.txt ]; then
+            echo "Error: downloaded v2fly OpenAI domain list is empty."
             exit 1
           fi
 
-          echo "Downloaded OpenAI domain list:"
-          wc -l build/openai.txt
+          echo "Downloaded v2fly OpenAI domain list:"
+          wc -l build/openai-v2fly.txt
 
           if grep -niE \
             '^[[:space:]]*include:[A-Za-z0-9!-]+([[:space:]]|#|$)' \
-            build/openai.txt > build/openai-includes.txt; then
+            build/openai-v2fly.txt > build/openai-includes.txt; then
             echo "Error: OpenAI upstream contains include: directives."
             echo "Included lists must be resolved before publishing complete rules."
             sed -n '1,20p' build/openai-includes.txt
             exit 1
           fi
 
-      - name: Generate OpenAI attribute views
+      - name: Generate v2fly OpenAI rules
         run: |
-          python scripts/filter_v2fly.py \
-            build/openai.txt \
-            build/openai-noads.txt \
-            --exclude-attribute ads
+          python scripts/convert.py \
+            build/openai-v2fly.txt \
+            rules/OpenAI/Sources/OpenAI-v2fly.list \
+            --unsupported-output build/unsupported-openai-v2fly.txt
 
-          python scripts/filter_v2fly.py \
-            build/openai.txt \
-            build/openai-ads.txt \
-            --include-attribute ads
-
-          count_ads_rules() {
-            awk '
-              {
-                line = tolower($0)
-                sub(/#.*/, "", line)
-                if (line ~ /(^|[[:space:]:,])@ads([[:space:]:,]|$)/) {
-                  count++
-                }
-              }
-              END { print count + 0 }
-            ' "$1"
-          }
-
-          count_rule_lines() {
-            awk '
-              {
-                line = $0
-                sub(/#.*/, "", line)
-                gsub(/^[[:space:]]+|[[:space:]]+$/, "", line)
-                if (line != "" && line !~ /^[@&]/) {
-                  count++
-                }
-              }
-              END { print count + 0 }
-            ' "$1"
-          }
-
-          upstream_ads_count="$(count_ads_rules build/openai.txt)"
-          filtered_ads_count="$(count_ads_rules build/openai-ads.txt)"
-          filtered_rule_count="$(count_rule_lines build/openai-ads.txt)"
-
-          if [ "$filtered_ads_count" -ne "$upstream_ads_count" ] \
-            || [ "$filtered_rule_count" -ne "$upstream_ads_count" ]; then
-            echo "Error: OpenAI @ads attribute filtering produced an inconsistent view."
-            echo "Upstream @ads rules: $upstream_ads_count"
-            echo "Filtered @ads rules: $filtered_ads_count"
-            echo "Filtered total rules: $filtered_rule_count"
+          if [ ! -s rules/OpenAI/Sources/OpenAI-v2fly.list ]; then
+            echo "Error: OpenAI-v2fly.list is empty."
             exit 1
           fi
 
-      - name: Generate OpenAI rules
+          echo "Generated v2fly OpenAI rules:"
+          wc -l rules/OpenAI/Sources/OpenAI-v2fly.list
+
+      - name: Download GeoLite2 ASN database
         run: |
-          python scripts/convert.py \
-            build/openai.txt \
+          curl \
+            --fail \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --output build/GeoLite2-ASN.mmdb \
+            https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb
+
+          if [ ! -s build/GeoLite2-ASN.mmdb ]; then
+            echo "Error: GeoLite2-ASN.mmdb is empty."
+            exit 1
+          fi
+
+          echo "Downloaded GeoLite2 ASN database:"
+          ls -lh build/GeoLite2-ASN.mmdb
+
+      - name: Generate OpenAI ASN rules
+        run: |
+          python scripts/convert_asn.py \
+            build/GeoLite2-ASN.mmdb \
+            rules/OpenAI/Sources/OpenAI-ASN-IP.list \
+            rules/OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list \
+            --asn 401518 \
+            --asn 401864
+
+          if [ ! -s rules/OpenAI/Sources/OpenAI-ASN-IP.list ]; then
+            echo "Error: OpenAI-ASN-IP.list is empty."
+            exit 1
+          fi
+
+          if [ ! -s rules/OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list ]; then
+            echo "Error: OpenAI-ASN-IP-NoResolve.list is empty."
+            exit 1
+          fi
+
+          echo "Generated OpenAI ASN rules:"
+          wc -l rules/OpenAI/Sources/OpenAI-ASN-IP.list
+          wc -l rules/OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list
+
+      - name: Download ChatGPT Voice prefixes
+        run: |
+          curl \
+            --fail \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --output build/chatgpt-voice.json \
+            https://openai.com/chatgpt-voice.json
+
+          if [ ! -s build/chatgpt-voice.json ]; then
+            echo "Error: chatgpt-voice.json is empty."
+            exit 1
+          fi
+
+          echo "Downloaded ChatGPT Voice prefixes:"
+          wc -c build/chatgpt-voice.json
+
+      - name: Generate ChatGPT Voice rules
+        run: |
+          python scripts/convert_openai_voice.py \
+            build/chatgpt-voice.json \
+            rules/OpenAI/Sources/OpenAI-Voice-IP.list \
+            rules/OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list
+
+          if [ ! -s rules/OpenAI/Sources/OpenAI-Voice-IP.list ]; then
+            echo "Error: OpenAI-Voice-IP.list is empty."
+            exit 1
+          fi
+
+          if [ ! -s rules/OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list ]; then
+            echo "Error: OpenAI-Voice-IP-NoResolve.list is empty."
+            exit 1
+          fi
+
+          echo "Generated ChatGPT Voice rules:"
+          wc -l rules/OpenAI/Sources/OpenAI-Voice-IP.list
+          wc -l rules/OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list
+
+      - name: Merge and validate OpenAI rules
+        run: |
+          python scripts/merge_rules.py merge \
             rules/OpenAI/OpenAI.list \
-            --unsupported-output build/unsupported-openai.txt
+            rules/OpenAI/Sources/OpenAI-v2fly.list \
+            rules/OpenAI/Sources/OpenAI-Official-Domain.list \
+            rules/OpenAI/Sources/OpenAI-ASN-IP.list \
+            rules/OpenAI/Sources/OpenAI-Voice-IP.list
 
-          python scripts/convert.py \
-            build/openai-noads.txt \
-            rules/OpenAI/OpenAI-NoAds.list \
-            --unsupported-output build/unsupported-openai-noads.txt
+          python scripts/merge_rules.py merge \
+            rules/OpenAI/OpenAI-NoResolve.list \
+            rules/OpenAI/Sources/OpenAI-v2fly.list \
+            rules/OpenAI/Sources/OpenAI-Official-Domain.list \
+            rules/OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list \
+            rules/OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list
 
-          python scripts/convert.py \
-            build/openai-ads.txt \
-            rules/OpenAI/OpenAI-Ads.list \
-            --unsupported-output build/unsupported-openai-ads.txt
+          python scripts/merge_rules.py validate-pair \
+            rules/OpenAI/OpenAI.list \
+            rules/OpenAI/OpenAI-NoResolve.list
 
           if [ ! -s rules/OpenAI/OpenAI.list ]; then
             echo "Error: OpenAI.list is empty."
             exit 1
           fi
 
-          if [ ! -s rules/OpenAI/OpenAI-NoAds.list ]; then
-            echo "Error: OpenAI-NoAds.list is empty."
+          if [ ! -s rules/OpenAI/OpenAI-NoResolve.list ]; then
+            echo "Error: OpenAI-NoResolve.list is empty."
             exit 1
           fi
 
-          echo "Generated OpenAI rules:"
+          echo "Generated aggregate OpenAI rules:"
           wc -l rules/OpenAI/OpenAI.list
-          wc -l rules/OpenAI/OpenAI-NoAds.list
-          wc -l rules/OpenAI/OpenAI-Ads.list
+          wc -l rules/OpenAI/OpenAI-NoResolve.list
 
       # =========================
       # AdGuard DNS Filter
