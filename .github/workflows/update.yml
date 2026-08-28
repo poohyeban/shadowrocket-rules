@@ -67,20 +67,20 @@ jobs:
           echo "Downloaded China domain list:"
           wc -l build/cn.txt
 
-      - name: Generate China-Domain.list
+      - name: Generate China-v2fly-Domain.list
         run: |
           python scripts/convert.py \
             build/cn.txt \
-            rules/China/China-Domain.list \
+            rules/China/Sources/China-v2fly-Domain.list \
             --unsupported-output build/unsupported-v2fly-rules.txt
 
-          if [ ! -s rules/China/China-Domain.list ]; then
-            echo "Error: China-Domain.list is empty."
+          if [ ! -s rules/China/Sources/China-v2fly-Domain.list ]; then
+            echo "Error: China-v2fly-Domain.list is empty."
             exit 1
           fi
 
-          echo "Generated China domain rules:"
-          wc -l rules/China/China-Domain.list
+          echo "Generated v2fly China domain rules:"
+          wc -l rules/China/Sources/China-v2fly-Domain.list
 
       # =========================
       # OpenAI
@@ -319,22 +319,52 @@ jobs:
         run: |
           python scripts/convert_geoip.py \
             build/GeoLite2-Country.mmdb \
-            rules/China/GeoIP-CN.list \
-            rules/China/GeoIP-CN-NoResolve.list
+            rules/China/Sources/China-GeoIP.list \
+            rules/China/Sources/China-GeoIP-NoResolve.list
 
-          if [ ! -s rules/China/GeoIP-CN.list ]; then
-            echo "Error: GeoIP-CN.list is empty."
+          if [ ! -s rules/China/Sources/China-GeoIP.list ]; then
+            echo "Error: China-GeoIP.list is empty."
             exit 1
           fi
 
-          if [ ! -s rules/China/GeoIP-CN-NoResolve.list ]; then
-            echo "Error: GeoIP-CN-NoResolve.list is empty."
+          if [ ! -s rules/China/Sources/China-GeoIP-NoResolve.list ]; then
+            echo "Error: China-GeoIP-NoResolve.list is empty."
             exit 1
           fi
 
-          echo "Generated GeoIP rules:"
-          wc -l rules/China/GeoIP-CN.list
-          wc -l rules/China/GeoIP-CN-NoResolve.list
+          echo "Generated China GeoIP source rules:"
+          wc -l rules/China/Sources/China-GeoIP.list
+          wc -l rules/China/Sources/China-GeoIP-NoResolve.list
+
+      - name: Merge and validate China rules
+        run: |
+          python scripts/merge_rules.py merge \
+            rules/China/China.list \
+            rules/China/Sources/China-v2fly-Domain.list \
+            rules/China/Sources/China-GeoIP.list
+
+          python scripts/merge_rules.py merge \
+            rules/China/China-NoResolve.list \
+            rules/China/Sources/China-v2fly-Domain.list \
+            rules/China/Sources/China-GeoIP-NoResolve.list
+
+          python scripts/merge_rules.py validate-pair \
+            rules/China/China.list \
+            rules/China/China-NoResolve.list
+
+          if [ ! -s rules/China/China.list ]; then
+            echo "Error: China.list is empty."
+            exit 1
+          fi
+
+          if [ ! -s rules/China/China-NoResolve.list ]; then
+            echo "Error: China-NoResolve.list is empty."
+            exit 1
+          fi
+
+          echo "Generated aggregate China rules:"
+          wc -l rules/China/China.list
+          wc -l rules/China/China-NoResolve.list
 
       # =========================
       # Show changes

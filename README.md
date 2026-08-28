@@ -17,13 +17,41 @@ rules/
   networks, and official ChatGPT Voice IP prefixes.
 - `rules/OpenAI/OpenAI-NoResolve.list`: the same rules, with `no-resolve` on
   every `IP-CIDR` and `IP-CIDR6` rule.
-- `rules/China/China-Domain.list`: China domain rules from
-  [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community).
-- `rules/China/GeoIP-CN.list`: China IPv4 and IPv6 CIDR rules.
-- `rules/China/GeoIP-CN-NoResolve.list`: the same CIDR rules with `no-resolve`.
+- `rules/China/China.list`: v2fly China domains plus China IPv4 and IPv6 CIDR
+  rules.
+- `rules/China/China-NoResolve.list`: the same rules, with `no-resolve` on every
+  `IP-CIDR` and `IP-CIDR6` rule.
 - `rules/AdGuard/Ad-Domain.list`: DNS-level advertising and tracking rules safely
   converted from the official
   [AdGuard DNS Filter](https://github.com/AdguardTeam/AdGuardSDNSFilter).
+
+## China usage
+
+Use the regular aggregate ruleset:
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/China/China.list,国内直连
+```
+
+Or use the equivalent `no-resolve` variant:
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/China/China-NoResolve.list,国内直连
+```
+
+`China.list` combines v2fly China domain rules with China GeoIP IPv4/IPv6
+rules. `China-NoResolve.list` contains the same domain and IP rule sets, but all
+IP rules carry `no-resolve`.
+
+The provenance files under `rules/China/Sources/` are also usable separately:
+
+- `China-v2fly-Domain.list`: China domain rules converted from
+  [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community).
+- `China-GeoIP.list` and `China-GeoIP-NoResolve.list`: China networks extracted
+  from the GeoLite2 Country database, in regular and `no-resolve` forms.
+
+Most users only need `China.list` or `China-NoResolve.list`; the source files are
+provided for provenance, auditing, debugging, and individual use.
 
 ## OpenAI usage
 

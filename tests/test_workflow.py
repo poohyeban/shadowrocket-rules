@@ -7,6 +7,7 @@ from pathlib import Path
 
 REPOSITORY = Path(__file__).resolve().parents[1]
 WORKFLOW = REPOSITORY / ".github" / "workflows" / "update.yml"
+README = REPOSITORY / "README.md"
 INCLUDE_PATTERN = r"^[[:space:]]*include:[A-Za-z0-9!-]+([[:space:]]|#|$)"
 
 
@@ -72,6 +73,39 @@ class WorkflowGuardTests(unittest.TestCase):
         self.assertNotIn("scripts/filter_v2fly.py", workflow)
         self.assertNotIn("OpenAI-Ads.list", workflow)
         self.assertNotIn("OpenAI-NoAds.list", workflow)
+
+    def test_workflow_builds_china_sources_and_aggregates(self):
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        expected_paths = (
+            "rules/China/Sources/China-v2fly-Domain.list",
+            "rules/China/Sources/China-GeoIP.list",
+            "rules/China/Sources/China-GeoIP-NoResolve.list",
+            "rules/China/China.list",
+            "rules/China/China-NoResolve.list",
+        )
+        for path in expected_paths:
+            with self.subTest(path=path):
+                self.assertIn(path, workflow)
+
+        self.assertIn(
+            "python scripts/merge_rules.py validate-pair \\\n"
+            "            rules/China/China.list \\\n"
+            "            rules/China/China-NoResolve.list",
+            workflow,
+        )
+
+    def test_workflow_and_readme_do_not_reference_legacy_china_paths(self):
+        content = WORKFLOW.read_text(encoding="utf-8") + README.read_text(
+            encoding="utf-8"
+        )
+        legacy_paths = (
+            "rules/China/China-Domain.list",
+            "rules/China/GeoIP-CN.list",
+            "rules/China/GeoIP-CN-NoResolve.list",
+        )
+        for path in legacy_paths:
+            with self.subTest(path=path):
+                self.assertNotIn(path, content)
 
 
 if __name__ == "__main__":

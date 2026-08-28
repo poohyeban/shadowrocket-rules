@@ -95,6 +95,43 @@ class MergeRulesTests(unittest.TestCase):
             with contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(validate_pair(regular, no_resolve), (1, 2))
 
+    def test_china_style_sources_merge_into_consistent_aggregates(self):
+        BUILD.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=BUILD) as directory:
+            root = Path(directory)
+            domains = self.write(
+                root,
+                "China-v2fly-Domain.list",
+                "DOMAIN,exact.example\nDOMAIN-SUFFIX,example.cn\n",
+            )
+            geoip = self.write(
+                root,
+                "China-GeoIP.list",
+                "IP-CIDR,192.0.2.0/24\nIP-CIDR6,2001:db8::/32\n",
+            )
+            geoip_no_resolve = self.write(
+                root,
+                "China-GeoIP-NoResolve.list",
+                "IP-CIDR,192.0.2.0/24,no-resolve\n"
+                "IP-CIDR6,2001:db8::/32,no-resolve\n",
+            )
+            regular = root / "China.list"
+            no_resolve = root / "China-NoResolve.list"
+
+            with contextlib.redirect_stdout(io.StringIO()):
+                merge_files([domains, geoip], regular)
+                merge_files([domains, geoip_no_resolve], no_resolve)
+                self.assertEqual(validate_pair(regular, no_resolve), (2, 2))
+
+            self.assertIn(
+                "DOMAIN-SUFFIX,example.cn\n",
+                regular.read_text(encoding="utf-8"),
+            )
+            self.assertIn(
+                "IP-CIDR,192.0.2.0/24,no-resolve\n",
+                no_resolve.read_text(encoding="utf-8"),
+            )
+
     def test_no_resolve_modifier_policy_is_enforced(self):
         BUILD.mkdir(exist_ok=True)
         cases = (
