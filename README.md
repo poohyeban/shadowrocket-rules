@@ -19,7 +19,7 @@ For most configurations, use the `no-resolve` variants for China and OpenAI,
 plus the AdGuard hostname ruleset:
 
 ```ini
-RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/China/China-NoResolve.list,国内直连
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/China/China-NoResolve.list,China
 RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI/OpenAI-NoResolve.list,OpenAI
 RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/AdGuard/Ad-Domain.list,REJECT
 ```
