@@ -1,7 +1,6 @@
 name: Update Shadowrocket Rules
 
 on:
-  # 05:17 | 06:18 (Asia/Taipei)
   schedule:
     - cron: "17 1 * * *"
       timezone: "Asia/Taipei"
