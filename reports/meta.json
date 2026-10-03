@@ -1,0 +1,151 @@
+{
+  "counts": {
+    "Facebook": {
+      "added": [
+        [
+          "domain",
+          "accountkit.com"
+        ],
+        [
+          "domain",
+          "f8.com"
+        ]
+      ],
+      "primary": 397,
+      "supplement": 11,
+      "total": 397
+    },
+    "Instagram": {
+      "added": [
+        [
+          "domain",
+          "instagr.am"
+        ]
+      ],
+      "primary": 74,
+      "supplement": 3,
+      "total": 73
+    },
+    "WhatsApp": {
+      "added": [],
+      "primary": 13,
+      "supplement": 1,
+      "total": 11
+    }
+  },
+  "outputs": {
+    "Facebook/Facebook.list": "0e9274f964a46c101191c25fed9c3c9b1d88153db34f9a1f37046c1f1a3433d7",
+    "Facebook/Sources/Facebook-Sukka.list": "cc3d1a0529d1d8be8ff03931b54abe5d3e1fc8a54954d987dce312afda4d12ed",
+    "Facebook/Sources/Facebook-v2fly.list": "1928c4fdc7b83386e15bca42bc7fa96dd39c26b72f4f0ffe1bf4f1a14a1b582d",
+    "Instagram/Instagram.list": "eaf92742808fee755212db29fa6e3b04509276741bf776d70c8cf996734c3756",
+    "Instagram/Sources/Instagram-Sukka.list": "293cf619c523dad30f34fdbf7f119be1072615f7f6fec21a502a6f053f561661",
+    "Instagram/Sources/Instagram-v2fly.list": "ffe88edb443f2be5b3a9195dcd432994c01b5a8f1cf370a865e453f0134a8ed7",
+    "WhatsApp/Sources/WhatsApp-Sukka.list": "f0f54279df9b33f8e0b66c2a2d393169ad0b2a1dff71e46d2f0c3e97d5e0448b",
+    "WhatsApp/Sources/WhatsApp-v2fly.list": "a7ba688aaa5c57d89ee50ccc26375079223b5ccab52ed7f4bdc164c5540ece92",
+    "WhatsApp/WhatsApp.list": "e9e2e72eb241fa25a142eea216e67858f48434c01a6ed1ef5213af59acf4cc27"
+  },
+  "primary_skipped": {
+    "Facebook": [],
+    "Instagram": [],
+    "WhatsApp": []
+  },
+  "review_sha256": "36dbaced73c24886823f973acf52faeb7d2291ce90763810c4e1dc73de7b39be",
+  "sources": {
+    "facebook": {
+      "commit": "2c892a618f4e23c549d28edd0f3f75407521b1aa",
+      "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2c892a618f4e23c549d28edd0f3f75407521b1aa/data/facebook"
+    },
+    "instagram": {
+      "commit": "2c892a618f4e23c549d28edd0f3f75407521b1aa",
+      "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2c892a618f4e23c549d28edd0f3f75407521b1aa/data/instagram"
+    },
+    "sukka": {
+      "commit": "f04a875de2cdcf443e4f11366490d24544e9e0b3",
+      "sha256": "9e0ec987310a4e86dcbe981052da0531cef296f98e6516d6df0bbd3422f29cd1",
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/f04a875de2cdcf443e4f11366490d24544e9e0b3/Source/non_ip/global.conf"
+    },
+    "whatsapp": {
+      "commit": "2c892a618f4e23c549d28edd0f3f75407521b1aa",
+      "sha256": "d23fbe2f886bfbd52c3ae40e1fed05cbc4a721564e7eda76f226824d0b137dca",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2c892a618f4e23c549d28edd0f3f75407521b1aa/data/whatsapp"
+    }
+  },
+  "sukka_selection": {
+    "input": 28,
+    "review_entries_absent_upstream": 0,
+    "selected": {
+      "Facebook": 11,
+      "Instagram": 3,
+      "WhatsApp": 1
+    },
+    "skipped": [
+      {
+        "line": 187,
+        "reason": "legacy FriendFeed shortener, not selected for Facebook",
+        "source_rule": "DOMAIN-SUFFIX,ff.im"
+      },
+      {
+        "line": 192,
+        "reason": "Messenger is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,m.me"
+      },
+      {
+        "line": 193,
+        "reason": "Messenger is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,messenger.com"
+      },
+      {
+        "line": 194,
+        "reason": "Messenger is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,fbmessenger.com"
+      },
+      {
+        "line": 195,
+        "reason": "Oculus is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,oculus.com"
+      },
+      {
+        "line": 196,
+        "reason": "Oculus is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,oculuscdn.com"
+      },
+      {
+        "line": 200,
+        "reason": "Threads is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,threads.net"
+      },
+      {
+        "line": 202,
+        "reason": "brand keyword also matches unrelated hostnames",
+        "source_rule": "DOMAIN-KEYWORD,facebook"
+      },
+      {
+        "line": 203,
+        "reason": "Meta umbrella site, outside the three service categories",
+        "source_rule": "DOMAIN-SUFFIX,meta.com"
+      },
+      {
+        "line": 205,
+        "reason": "outside the three service categories",
+        "source_rule": "DOMAIN-SUFFIX,mixer.com"
+      },
+      {
+        "line": 206,
+        "reason": "Threads is a separate upstream service category",
+        "source_rule": "DOMAIN-SUFFIX,threads.com"
+      },
+      {
+        "line": 207,
+        "reason": "Meta umbrella site, outside the three service categories",
+        "source_rule": "DOMAIN-SUFFIX,atmeta.com"
+      },
+      {
+        "line": 209,
+        "reason": "brand keyword also matches unrelated hostnames",
+        "source_rule": "DOMAIN-KEYWORD,whatsapp"
+      }
+    ]
+  }
+}

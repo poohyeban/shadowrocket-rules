@@ -46,6 +46,13 @@ jobs:
         run: |
           python -m unittest discover -s tests -v
 
+      - name: Generate separate Meta service rules
+        run: |
+          python -m scripts.build_meta
+          find rules/WhatsApp rules/Instagram rules/Facebook reports -type f -print0 | sort -z | xargs -0 sha256sum > build/meta-first.sha256
+          python -m scripts.build_meta --offline
+          sha256sum --check build/meta-first.sha256
+
       # =========================
       # China Domain
       # =========================
@@ -383,7 +390,7 @@ jobs:
 
       - name: Commit updated rules
         run: |
-          git add -A -- rules/
+          git add -A -- rules/ reports/
 
           if git diff --cached --quiet; then
             echo "No rule changes detected."

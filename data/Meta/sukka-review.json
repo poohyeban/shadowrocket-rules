@@ -1,0 +1,22 @@
+{
+  "additions": {
+    "DOMAIN-SUFFIX,accountkit.com": "Facebook",
+    "DOMAIN-SUFFIX,f8.com": "Facebook",
+    "DOMAIN-SUFFIX,instagr.am": "Instagram"
+  },
+  "excluded": {
+    "DOMAIN-KEYWORD,facebook": "brand keyword also matches unrelated hostnames",
+    "DOMAIN-KEYWORD,whatsapp": "brand keyword also matches unrelated hostnames",
+    "DOMAIN-SUFFIX,atmeta.com": "Meta umbrella site, outside the three service categories",
+    "DOMAIN-SUFFIX,fbmessenger.com": "Messenger is a separate upstream service category",
+    "DOMAIN-SUFFIX,ff.im": "legacy FriendFeed shortener, not selected for Facebook",
+    "DOMAIN-SUFFIX,m.me": "Messenger is a separate upstream service category",
+    "DOMAIN-SUFFIX,messenger.com": "Messenger is a separate upstream service category",
+    "DOMAIN-SUFFIX,meta.com": "Meta umbrella site, outside the three service categories",
+    "DOMAIN-SUFFIX,mixer.com": "outside the three service categories",
+    "DOMAIN-SUFFIX,oculus.com": "Oculus is a separate upstream service category",
+    "DOMAIN-SUFFIX,oculuscdn.com": "Oculus is a separate upstream service category",
+    "DOMAIN-SUFFIX,threads.com": "Threads is a separate upstream service category",
+    "DOMAIN-SUFFIX,threads.net": "Threads is a separate upstream service category"
+  }
+}

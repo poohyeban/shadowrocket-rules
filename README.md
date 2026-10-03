@@ -28,6 +28,43 @@ The policy names above are examples. Choose policy or proxy-group names that
 fit your own configuration. Regular variants without the `no-resolve` modifier
 are also available as `China.list` and `OpenAI.list`.
 
+## Meta service rules
+
+Three independent, policy-free subscriptions:
+
+| Service | Subscription |
+|---|---|
+| WhatsApp | [WhatsApp.list](https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/WhatsApp/WhatsApp.list) |
+| Instagram | [Instagram.list](https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/Instagram/Instagram.list) |
+| Facebook | [Facebook.list](https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/Facebook/Facebook.list) |
+
+The primary inputs are v2fly `data/whatsapp`, `data/instagram`, and `data/facebook`,
+from one pinned commit per build. The auxiliary input is SukkaW/Surge's original
+`Source/non_ip/global.conf`, also pinned for the build. This repository downloads
+original upstreams directly, not generated Loon lists. The reviewed selection in
+`data/Meta/sukka-review.json` follows the same service boundaries as loon-rules:
+`instagr.am`, `accountkit.com`, and `f8.com` are supplementary entries;
+Messenger, Threads, Oculus, and Meta umbrella sites are not additionally merged.
+Broad Sukka brand keywords are excluded. Unclassified auxiliary domains are
+reported for review, not automatically assigned to Facebook. Review entries
+select live upstream rules; they never resurrect removed upstream entries.
+
+Each service uses the existing Shadowrocket converter, then exact deduplication
+and conservative suffix coverage compaction. Exact domains stay exact. Native
+Loon logic is not copied into these files. Unsupported regexps are reported in
+full; malformed inputs or unresolved includes abort publication. These lists
+contain domains only, so no duplicate `NoResolve` files or broad Meta IP ranges
+are generated. They do not guarantee coverage of IP-only voice/video traffic.
+Source subsets remain under each service's `Sources/` directory. Provenance,
+input revisions/hashes, selection decisions and counts are in
+[`reports/meta.json`](reports/meta.json). Scheduled Actions regenerate all three
+and check an offline rebuild before publishing. To reproduce locally:
+
+```sh
+python -m scripts.build_meta
+python -m scripts.build_meta --offline
+```
+
 ## Available Rulesets
 
 ### China
@@ -321,9 +358,9 @@ would violate the exception.
 ### Deterministic output
 
 Generated lists use canonical values, exact deduplication, deterministic
-ordering, UTF-8, LF line endings, and no generated timestamp or header. Merge
-steps perform exact deduplication only; they do not apply domain hierarchy or
-suffix compression.
+ordering, UTF-8, LF line endings, and no generated timestamp or header. China and OpenAI merge
+steps perform exact deduplication only. The new Meta service aggregates also
+remove rules fully covered by an unconditional suffix within the same service.
 
 Build-only diagnostics are written below `build/`, which is ignored by Git.
 When upstream content is unchanged, regeneration should therefore produce no
@@ -495,7 +532,7 @@ Each run:
 4. converts and validates individual source files;
 5. merges China and OpenAI aggregates;
 6. validates regular/`no-resolve` equivalence;
-7. stages only `rules/`; and
+7. generates and verifies the three Meta lists, then stages only `rules/` and `reports/`; and
 8. commits and pushes only when generated rule content changed.
 
 When generation matches the tracked files exactly, the commit step reports
@@ -568,3 +605,9 @@ subject to the upstream
 [GNU GPLv3 license](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE).
 The v2fly- and GeoLite-derived outputs remain subject to their respective
 upstream data licenses and notices.
+
+The Meta service datasets and Sukka-derived source subsets are distributed under
+AGPL-3.0, with attribution to Sukka and contributors ([SukkaW/Surge](https://github.com/SukkaW/Surge)).
+See `licenses/Sukka-AGPL-3.0.txt`. Initial modification: 2026-10-03; changes are
+service selection, format conversion and deduplication. Separately stored
+v2fly-only subsets retain their upstream MIT license. The generator remains MIT.
