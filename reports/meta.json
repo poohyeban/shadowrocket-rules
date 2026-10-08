@@ -28,7 +28,7 @@
     },
     "WhatsApp": {
       "added": [],
-      "primary": 13,
+      "primary": 11,
       "supplement": 1,
       "total": 11
     }
@@ -41,7 +41,7 @@
     "Instagram/Sources/Instagram-Sukka.list": "293cf619c523dad30f34fdbf7f119be1072615f7f6fec21a502a6f053f561661",
     "Instagram/Sources/Instagram-v2fly.list": "ffe88edb443f2be5b3a9195dcd432994c01b5a8f1cf370a865e453f0134a8ed7",
     "WhatsApp/Sources/WhatsApp-Sukka.list": "f0f54279df9b33f8e0b66c2a2d393169ad0b2a1dff71e46d2f0c3e97d5e0448b",
-    "WhatsApp/Sources/WhatsApp-v2fly.list": "a7ba688aaa5c57d89ee50ccc26375079223b5ccab52ed7f4bdc164c5540ece92",
+    "WhatsApp/Sources/WhatsApp-v2fly.list": "e9e2e72eb241fa25a142eea216e67858f48434c01a6ed1ef5213af59acf4cc27",
     "WhatsApp/WhatsApp.list": "e9e2e72eb241fa25a142eea216e67858f48434c01a6ed1ef5213af59acf4cc27"
   },
   "primary_skipped": {
@@ -52,24 +52,24 @@
   "review_sha256": "36dbaced73c24886823f973acf52faeb7d2291ce90763810c4e1dc73de7b39be",
   "sources": {
     "facebook": {
-      "commit": "88305e9df237d81de4d879db17ba535a54be5e14",
+      "commit": "e84921279c9142434b43cb84ec6c17f987e025df",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/88305e9df237d81de4d879db17ba535a54be5e14/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e84921279c9142434b43cb84ec6c17f987e025df/data/facebook"
     },
     "instagram": {
-      "commit": "88305e9df237d81de4d879db17ba535a54be5e14",
+      "commit": "e84921279c9142434b43cb84ec6c17f987e025df",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/88305e9df237d81de4d879db17ba535a54be5e14/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e84921279c9142434b43cb84ec6c17f987e025df/data/instagram"
     },
     "sukka": {
-      "commit": "6373d9aca136bf6b8f4ad091baebf50a8f088d4a",
-      "sha256": "9e0ec987310a4e86dcbe981052da0531cef296f98e6516d6df0bbd3422f29cd1",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/6373d9aca136bf6b8f4ad091baebf50a8f088d4a/Source/non_ip/global.conf"
+      "commit": "1c454d540ff76a50e7828a7fe95583701905e306",
+      "sha256": "43ab6e136b20f9f28cd54f0c565a6d81198053f62425c4a4beba9e2992b42471",
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/1c454d540ff76a50e7828a7fe95583701905e306/Source/non_ip/global.conf"
     },
     "whatsapp": {
-      "commit": "88305e9df237d81de4d879db17ba535a54be5e14",
-      "sha256": "d23fbe2f886bfbd52c3ae40e1fed05cbc4a721564e7eda76f226824d0b137dca",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/88305e9df237d81de4d879db17ba535a54be5e14/data/whatsapp"
+      "commit": "e84921279c9142434b43cb84ec6c17f987e025df",
+      "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e84921279c9142434b43cb84ec6c17f987e025df/data/whatsapp"
     }
   },
   "sukka_selection": {
