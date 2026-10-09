@@ -15,18 +15,40 @@ upstream rule is representable or that every runtime behavior has been tested.
 
 ## Quick Start
 
-For most configurations, use the `no-resolve` variants for China and OpenAI,
+For most configurations, use the `no-resolve` variants for China, OpenAI and Claude,
 plus the AdGuard hostname ruleset:
 
 ```ini
 RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/China/China-NoResolve.list,China
 RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/OpenAI/OpenAI-NoResolve.list,OpenAI
+RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/Claude/Claude-NoResolve.list,Claude
 RULE-SET,https://raw.githubusercontent.com/poohyeban/shadowrocket-rules/main/rules/AdGuard/Ad-Domain.list,REJECT
 ```
 
 The policy names above are examples. Choose policy or proxy-group names that
 fit your own configuration. Regular variants without the `no-resolve` modifier
-are also available as `China.list` and `OpenAI.list`.
+are also available as `China.list`, `OpenAI.list` and `Claude.list`.
+
+## Shadowrocket compatibility and source audit
+
+Generated subscriptions use only `DOMAIN`, `DOMAIN-SUFFIX`, `DOMAIN-KEYWORD`,
+`DOMAIN-WILDCARD` and `IP-CIDR`, with an optional `no-resolve` modifier for IPs.
+**Both IPv4 and IPv6 use `IP-CIDR`.** `IP-CIDR6`, `DOMAIN-REGEX`, logical rules
+(`AND`/`OR`/`NOT`), scripts, nested rulesets and per-rule policies are rejected
+by the publication validator. Policy names belong on the enclosing `RULE-SET` line.
+Lists containing `DOMAIN-WILDCARD` require Shadowrocket **2.2.65 or newer**.
+
+The [2026-10-09 audit](docs/audit-2026-10-09.md) records source availability,
+maintenance evidence, compatibility references, source candidates and coverage
+limits. [`reports/sources.json`](reports/sources.json) records all downloaded
+input hashes and source-provided versions; [`reports/health.json`](reports/health.json)
+records rule counts, address families, aggregate consistency and output hashes.
+These checks run before scheduled publication and on pull requests:
+
+```sh
+python -m scripts.audit_sources  # after downloading and generating
+python -m scripts.audit_rules   # offline check of all published files
+```
 
 ## Meta service rules
 
@@ -72,7 +94,7 @@ python -m scripts.build_meta --offline
 - [`rules/China/China.list`](rules/China/China.list) combines v2fly China domain
   rules with China IPv4 and IPv6 networks extracted from GeoLite2 Country.
 - [`rules/China/China-NoResolve.list`](rules/China/China-NoResolve.list) contains
-  the same domain and IP sets, but every `IP-CIDR` and `IP-CIDR6` rule carries
+  the same domain and IP sets, but every IPv4 and IPv6 `IP-CIDR` rule carries
   `no-resolve`.
 
 ### OpenAI
@@ -84,6 +106,35 @@ python -m scripts.build_meta --offline
 - [`rules/OpenAI/OpenAI-NoResolve.list`](rules/OpenAI/OpenAI-NoResolve.list)
   contains the same logical domain and IP sets, but every IP rule carries
   `no-resolve`.
+
+### Claude
+
+- [`rules/Claude/Claude.list`](rules/Claude/Claude.list) combines the maintained
+  v2fly `data/anthropic` domain list with GeoLite2-ASN networks for explicitly
+  tracked Anthropic ASN **AS399358**.
+- [`rules/Claude/Claude-NoResolve.list`](rules/Claude/Claude-NoResolve.list)
+  has the same domains and IPv4/IPv6 CIDRs; every IP rule carries `no-resolve`.
+
+Claude and OpenAI use the **same downloaded GeoLite2-ASN database** per build.
+The current Claude snapshot contains nine domain rules and three IP rules.
+The [official Claude API IP documentation](https://platform.claude.com/docs/en/api/ip-addresses)
+confirms inbound `160.79.104.0/23` and `2607:6bc0::/48`; GeoLite2-ASN currently
+also maps `2607:6bc0:11::/48` to AS399358. These are owned-network routing rules,
+not a complete inventory of every endpoint used by Claude. Shared AWS, Google
+Cloud and Cloudflare networks are not classified wholesale as Claude.
+The official outbound MCP/tool-call range is a source-address allowlist, so it
+is not added as a broader destination-routing rule.
+
+Domains are fetched from one immutable v2fly commit per build and retain exact
+CDN hostname scope. Malformed rules or unresolved includes abort publication.
+Source subsets are stored in `rules/Claude/Sources/`; source revisions, hashes,
+ASN selection, skipped rules and output digests are in [`reports/claude.json`](reports/claude.json).
+To reproduce after downloading `build/GeoLite2-ASN.mmdb`:
+
+```sh
+python -m scripts.build_claude
+python -m scripts.build_claude --offline
+```
 
 ### AdGuard
 
@@ -115,6 +166,16 @@ rules/
 │       ├── OpenAI-Voice-IP.list
 │       └── OpenAI-Voice-IP-NoResolve.list
 │
+├── Claude/
+│   ├── Claude.list
+│   ├── Claude-NoResolve.list
+│   └── Sources/
+│       ├── Claude-v2fly.list
+│       ├── Claude-ASN-IP.list
+│       └── Claude-ASN-IP-NoResolve.list
+├── WhatsApp/
+├── Instagram/
+├── Facebook/
 └── AdGuard/
     └── Ad-Domain.list
 ```
@@ -178,8 +239,8 @@ OpenAI.list
 `-- official ChatGPT Voice IP prefixes
 ```
 
-`OpenAI-NoResolve.list` contains the same logical rules. Its `IP-CIDR` and
-`IP-CIDR6` entries additionally carry `no-resolve`.
+`OpenAI-NoResolve.list` contains the same logical rules. Its IPv4 and IPv6 `IP-CIDR`
+entries additionally carry `no-resolve`.
 
 #### v2fly domains
 
@@ -211,8 +272,8 @@ is the exact normalized source-entry set difference:
 official-domains.txt - official-domains-excluded.txt
 ```
 
-At the current reviewed snapshot, all 29 documented entries remain in the full
-snapshot, 16 entries are excluded from default routing, and 13 entries are
+At the current reviewed snapshot, all 30 documented entries remain in the full
+snapshot, 17 entries are excluded from default routing, and 13 entries are
 retained in the generated routing subset. Exclusions use exact source-entry
 matching after normalization. They do not trigger suffix inference, wildcard
 expansion, or semantic compression.
@@ -458,15 +519,15 @@ dot, whereas `[^.]` cannot. This remains an explicit coverage limitation.
 
 OpenAI's network guidance describes UDP port 3478 as preferred for ChatGPT
 Voice, with TCP port 443 as fallback. The official JSON supplies server IP
-prefixes, and this repository currently emits those prefixes as `IP-CIDR` or
-`IP-CIDR6` rules.
+prefixes, and this repository currently emits those prefixes as `IP-CIDR`
+rules for both IPv4 and IPv6.
 
 Those rules match traffic to the listed IP networks without preserving the
 documented protocol and port conditions. This is a deliberate semantic widening
 accepted by the current design, not an exact representation of the official
-network requirement. Compound forms involving `AND`, `PROTOCOL`,
-`DEST-PORT`/`DST-PORT`, `SCRIPT`, or similar features should not be introduced
-until their Shadowrocket runtime behavior has been tested reliably.
+network requirement. Logical combinations (`AND`, `OR`, `NOT`), port/protocol constraints and
+scripts are excluded from generated lists; only basic domain and CIDR
+primitives are published.
 
 ### OpenAI ASN scope and freshness
 
@@ -518,7 +579,7 @@ always reject or remove that rule type.
 ## Automation and Updates
 
 The [Update Shadowrocket Rules workflow](.github/workflows/update.yml) runs on
-two daily schedules, currently 05:17 and 06:18 Asia/Taipei. The second run acts
+two daily schedules, currently 01:17 and 05:43 Asia/Taipei. The second run acts
 as a fallback opportunity; neither schedule is a guarantee that upstream
 services or the network will always be available. Maintainers can also start the
 same workflow with `workflow_dispatch`.
@@ -530,9 +591,10 @@ Each run:
 3. downloads the configured machine-readable upstream sources with retries and
    non-empty checks;
 4. converts and validates individual source files;
-5. merges China and OpenAI aggregates;
+5. builds China, OpenAI and Claude aggregates;
 6. validates regular/`no-resolve` equivalence;
-7. generates and verifies the three Meta lists, then stages only `rules/` and `reports/`; and
+7. verifies offline rebuilds for Meta and Claude, records source digests and versions,
+   and audits every published list before staging only `rules/` and `reports/`; and
 8. commits and pushes only when generated rule content changed.
 
 When generation matches the tracked files exactly, the commit step reports
@@ -584,13 +646,12 @@ Possible future work, without a promised timeline:
    still be proven and bounded.
 3. Re-evaluate the unsupported v2fly China regexp rules without replacing them
    with broader wildcard guesses.
-4. Investigate reliable Shadowrocket runtime behavior for `AND`, protocol, port,
-   and compound rules.
+4. Improve coverage using only the supported basic domain and IP primitives.
 5. Perform controlled runtime testing for WebSocket and ChatGPT Voice traffic.
 6. Explore reliable detection of changes to the OpenAI Help Center allowlist
    without making CI depend on fragile page scraping.
-7. Improve provenance metadata outside generated `.list` files.
-8. Re-check tracked OpenAI ASNs and ASN-to-prefix freshness periodically.
+7. Extend source version and maintenance checks outside generated `.list` files.
+8. Re-check tracked OpenAI and Anthropic ASNs and ASN-to-prefix freshness periodically.
 9. Expand regression tests when upstream syntax or schemas change.
 
 The roadmap intentionally does not propose converting every regexp. Some source

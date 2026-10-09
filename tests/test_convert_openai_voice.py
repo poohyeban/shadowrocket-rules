@@ -126,12 +126,12 @@ class VoiceConversionTests(unittest.TestCase):
             self.assertEqual(data.creation_time, "2026-08-28T00:00:00+00:00")
             self.assertEqual(
                 regular.read_bytes(),
-                b"IP-CIDR,192.0.2.0/24\nIP-CIDR6,2001:db8::/32\n",
+                b"IP-CIDR,192.0.2.0/24\nIP-CIDR,2001:db8::/32\n",
             )
             self.assertEqual(
                 no_resolve.read_bytes(),
                 b"IP-CIDR,192.0.2.0/24,no-resolve\n"
-                b"IP-CIDR6,2001:db8::/32,no-resolve\n",
+                b"IP-CIDR,2001:db8::/32,no-resolve\n",
             )
             self.assertNotIn(b"creationTime", regular.read_bytes())
 

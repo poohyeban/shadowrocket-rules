@@ -1,0 +1,29 @@
+{
+  "asn_prefix_counts": {
+    "399358": 3
+  },
+  "asn_source": {
+    "sha256": "d81af0fdca127edf5e7e1069bab52244b2eb0f0f4e2602f281405e85d22dbcf2",
+    "target_asns": [
+      399358
+    ],
+    "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
+  },
+  "domain_count": 9,
+  "ip_count": 3,
+  "outputs": {
+    "Claude/Claude-NoResolve.list": "63fd16b30ab89299202588689452d463e27dbb884cf66cfaec6adceeb648d21a",
+    "Claude/Claude.list": "f0be85a4459c89802ed060a741ca896c239cc478e4f9ac1b8198d6da600219df",
+    "Claude/Sources/Claude-ASN-IP-NoResolve.list": "0a94f917c1389dadf8e0cfc64863b26b27ddb1b5bb634fdf19fb5c8eba9820ef",
+    "Claude/Sources/Claude-ASN-IP.list": "600a5cef2e0715b8e9299d588b382958abbc78769eb95a3aebc3c75f31ecef5a",
+    "Claude/Sources/Claude-v2fly.list": "b2b8e9a3a14980d2bcf8ef4e2ec231894855089533f6f3054af50b8d6636f64f"
+  },
+  "skipped": [],
+  "sources": {
+    "anthropic": {
+      "commit": "e84921279c9142434b43cb84ec6c17f987e025df",
+      "sha256": "bf48dc1b342bbfd06f2a93ee8ce180fc424d9c041dafd2d182ffb3f4186698b4",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e84921279c9142434b43cb84ec6c17f987e025df/data/anthropic"
+    }
+  }
+}

@@ -49,7 +49,7 @@ def write_rules(
             f.write(f"IP-CIDR,{network}{suffix}\n")
 
         for network in ipv6_networks:
-            f.write(f"IP-CIDR6,{network}{suffix}\n")
+            f.write(f"IP-CIDR,{network}{suffix}\n")
 
 
 def main():

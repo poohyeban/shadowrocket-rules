@@ -188,15 +188,15 @@ class OfficialDomainConversionTests(unittest.TestCase):
                 with self.assertRaises(OfficialDomainError):
                     self.convert("openai.com\n", value + "\n")
 
-    def test_repository_snapshot_contains_exactly_29_entries(self):
+    def test_repository_snapshot_contains_exactly_30_entries(self):
         BUILD.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=BUILD) as directory:
             output = Path(directory) / "official.list"
             with contextlib.redirect_stdout(io.StringIO()):
                 stats = convert_file(OFFICIAL_SOURCE, output)
-            self.assertEqual(stats.source_entries, 29)
-            self.assertEqual(stats.final_rules, 29)
-            self.assertEqual(len(output.read_text(encoding="utf-8").splitlines()), 29)
+            self.assertEqual(stats.source_entries, 30)
+            self.assertEqual(stats.final_rules, 30)
+            self.assertEqual(len(output.read_text(encoding="utf-8").splitlines()), 30)
 
     def test_repository_exclusions_and_filtered_generation_match(self):
         source_rules, source_entries = parse_file(
@@ -206,8 +206,8 @@ class OfficialDomainConversionTests(unittest.TestCase):
             OFFICIAL_EXCLUSIONS, "official domain exclusion source"
         )
 
-        self.assertEqual(source_entries, 29)
-        self.assertEqual(excluded_entries, 16)
+        self.assertEqual(source_entries, 30)
+        self.assertEqual(excluded_entries, 17)
         self.assertTrue(excluded_rules <= source_rules)
 
         BUILD.mkdir(exist_ok=True)
@@ -223,7 +223,7 @@ class OfficialDomainConversionTests(unittest.TestCase):
             expected = sorted(rule.render() for rule in source_rules - excluded_rules)
             actual = output.read_text(encoding="utf-8").splitlines()
             self.assertEqual(actual, expected)
-            self.assertEqual(stats.excluded_entries, 16)
+            self.assertEqual(stats.excluded_entries, 17)
             self.assertEqual(stats.final_rules, 13)
             self.assertEqual(len(actual), 13)
 

@@ -106,6 +106,28 @@ class V2FlyConversionTests(unittest.TestCase):
         self.assertEqual(output, b"DOMAIN-SUFFIX,example.com\n")
         self.assertNotIn(b"Generated at", output)
 
+    def test_strict_conversion_does_not_replace_output_on_invalid_input(self):
+        for content in ("example.com\ninclude:another", "example.com\nfull:bad/path", "# empty"):
+            with self.subTest(content=content), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                source, output = root / "source", root / "rules"
+                source.write_text(content)
+                output.write_text("previous content\n")
+                with self.assertRaises(ValueError):
+                    convert_file(source, output, strict=True)
+                self.assertEqual(output.read_text(), "previous content\n")
+
+    def test_all_unsupported_rules_are_recorded_beyond_console_sample(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, output, diagnostic = root / "source", root / "rules", root / "diagnostic"
+            source.write_text("example.com\n" + r"regexp:^.+\.example$" + "\n")
+            source.write_text(source.read_text() + (r"regexp:^.+\.example$" + "\n") * 29)
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                stats = convert_file(source, output, diagnostic, strict=True)
+            self.assertEqual(len(stats.warning_examples), 20)
+            self.assertEqual(len(diagnostic.read_text().splitlines()), 30)
+
 
 if __name__ == "__main__":
     unittest.main()

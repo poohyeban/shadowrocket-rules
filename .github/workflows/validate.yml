@@ -1,0 +1,22 @@
+name: Validate Shadowrocket Rules
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - run: python -m pip install maxminddb==3.1.1
+      - run: python -m unittest discover -s tests -v
+      - run: python -m scripts.audit_rules --report build/health.json

@@ -48,10 +48,12 @@ class ConversionStats:
     duplicate_rules: int = 0
     warning_reasons: Counter = field(default_factory=Counter)
     warning_examples: list[tuple[int, str, str]] = field(default_factory=list)
+    unsupported_records: list[tuple[int, str, str]] = field(default_factory=list)
     final_rules: int = 0
 
     def warn(self, line_number: int, reason: str, line: str) -> None:
         self.warning_reasons[reason] += 1
+        self.unsupported_records.append((line_number, reason, line.rstrip("\n")))
         if len(self.warning_examples) < MAX_WARNING_EXAMPLES:
             self.warning_examples.append((line_number, reason, line.rstrip("\n")))
 
@@ -131,7 +133,7 @@ def convert_rule(
 def _write_unsupported(path: Path, stats: ConversionStats) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as output:
-        for line_number, reason, line in stats.warning_examples:
+        for line_number, reason, line in stats.unsupported_records:
             output.write(f"{line_number}\t{reason}\t{line}\n")
 
 
@@ -166,6 +168,7 @@ def convert_file(
     output: Path,
     unsupported_output: Path | None = None,
     max_regex_expansions: int = MAX_REGEX_EXPANSIONS,
+    strict: bool = False,
 ) -> ConversionStats:
     stats = ConversionStats()
     rules: set[DomainRule] = set()
@@ -187,13 +190,19 @@ def convert_file(
     stats.duplicate_rules = converted_count - len(sorted_rules)
     stats.final_rules = len(sorted_rules)
 
+    if unsupported_output is not None:
+        _write_unsupported(unsupported_output, stats)
+    if strict:
+        invalid = [record for record in stats.unsupported_records
+                   if not record[1].startswith("unsafe-regexp:")]
+        if invalid or not sorted_rules:
+            raise ValueError(f"Invalid or empty v2fly source; refusing to publish: {source}; {invalid[:3]}")
+
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", encoding="utf-8", newline="\n") as output_file:
         for rule in sorted_rules:
             output_file.write(rule.render() + "\n")
 
-    if unsupported_output is not None:
-        _write_unsupported(unsupported_output, stats)
     _print_report(stats, output)
     return stats
 
@@ -204,6 +213,8 @@ def main() -> None:
     )
     parser.add_argument("source", type=Path, help="v2fly plaintext domain list")
     parser.add_argument("output", type=Path, help="generated Shadowrocket ruleset")
+    parser.add_argument("--strict", action="store_true",
+                        help="reject malformed/unknown inputs and unresolved includes before output")
     parser.add_argument(
         "--unsupported-output",
         type=Path,
@@ -227,6 +238,7 @@ def main() -> None:
         args.output,
         unsupported_output=args.unsupported_output,
         max_regex_expansions=args.max_regex_expansions,
+        strict=args.strict,
     )
 
 

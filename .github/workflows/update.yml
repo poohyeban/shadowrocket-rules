@@ -21,6 +21,7 @@ jobs:
   update:
     name: Update rules
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -64,6 +65,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/cn.txt \
             https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt
 
@@ -77,7 +80,7 @@ jobs:
 
       - name: Generate China-v2fly-Domain.list
         run: |
-          python scripts/convert.py \
+          python scripts/convert.py --strict \
             build/cn.txt \
             rules/China/Sources/China-v2fly-Domain.list \
             --unsupported-output build/unsupported-v2fly-rules.txt
@@ -116,6 +119,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/openai-v2fly.txt \
             https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai
 
@@ -138,7 +143,7 @@ jobs:
 
       - name: Generate v2fly OpenAI rules
         run: |
-          python scripts/convert.py \
+          python scripts/convert.py --strict \
             build/openai-v2fly.txt \
             rules/OpenAI/Sources/OpenAI-v2fly.list \
             --unsupported-output build/unsupported-openai-v2fly.txt
@@ -158,6 +163,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/GeoLite2-ASN.mmdb \
             https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb
 
@@ -168,6 +175,14 @@ jobs:
 
           echo "Downloaded GeoLite2 ASN database:"
           ls -lh build/GeoLite2-ASN.mmdb
+
+      - name: Generate Claude rules and verify offline rebuild
+        run: |
+          python -m scripts.build_claude
+          find rules/Claude -type f -print0 | sort -z | xargs -0 sha256sum > build/claude-first.sha256
+          sha256sum reports/claude.json >> build/claude-first.sha256
+          python -m scripts.build_claude --offline
+          sha256sum --check build/claude-first.sha256
 
       - name: Generate OpenAI ASN rules
         run: |
@@ -199,6 +214,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/chatgpt-voice.json \
             https://openai.com/chatgpt-voice.json
 
@@ -276,6 +293,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/adguard-filter.txt \
             https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
 
@@ -313,6 +332,8 @@ jobs:
             --location \
             --retry 3 \
             --retry-delay 5 \
+            --connect-timeout 20 \
+            --max-time 180 \
             --output build/GeoLite2-Country.mmdb \
             https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
 
@@ -378,6 +399,25 @@ jobs:
       # =========================
       # Show changes
       # =========================
+
+      - name: Audit all generated rules and source provenance
+        run: |
+          python -m scripts.audit_sources
+          python -m scripts.audit_rules
+
+      - name: Preserve build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadowrocket-build-diagnostics
+          retention-days: 7
+          path: |
+            build/unsupported-*.txt
+            build/openai-includes.txt
+            build/claude/unsupported.txt
+            build/meta/inputs.json
+            build/claude/inputs.json
+            reports/
 
       - name: Show changes
         run: |

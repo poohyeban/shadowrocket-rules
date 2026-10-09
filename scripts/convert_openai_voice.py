@@ -129,7 +129,7 @@ def write_rules(
         for network in ipv4_networks:
             output_file.write(f"IP-CIDR,{network}{suffix}\n")
         for network in ipv6_networks:
-            output_file.write(f"IP-CIDR6,{network}{suffix}\n")
+            output_file.write(f"IP-CIDR,{network}{suffix}\n")
 
 
 def convert_file(source: Path, output: Path, output_no_resolve: Path) -> VoiceData:
