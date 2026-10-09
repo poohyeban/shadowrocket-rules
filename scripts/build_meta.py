@@ -1,14 +1,13 @@
 """Build policy-free Meta lists directly from pinned original upstreams."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import re
-import subprocess
 
 from .convert import ConversionStats, convert_rule
 from .merge_rules import validate_rule
 from .meta_common import SERVICES, compact, select_sukka
+from .source_utils import pinned_inputs, sha
 
 ROOT = Path(__file__).resolve().parents[1]
 KINDS = {"DOMAIN": "full", "DOMAIN-SUFFIX": "domain", "DOMAIN-KEYWORD": "keyword"}
@@ -16,52 +15,8 @@ SOURCES = {**{s.lower(): ("v2fly/domain-list-community", "data/" + s.lower()) fo
            "sukka": ("SukkaW/Surge", "Source/non_ip/global.conf")}
 
 
-def sha(data):
-    return hashlib.sha256(data).hexdigest()
-
-
 def inputs(cache, offline):
-    cache.mkdir(parents=True, exist_ok=True)
-    if offline:
-        manifest = json.loads((cache / "inputs.json").read_text())
-        if set(manifest) != set(SOURCES):
-            raise ValueError("Offline Meta source inventory mismatch")
-    else:
-        commits = {}
-        for repo, _ in SOURCES.values():
-            if repo in commits:
-                continue
-            result = subprocess.check_output(["git", "ls-remote", "https://github.com/" + repo + ".git",
-                                              "refs/heads/master"], text=True, timeout=60).split()
-            if len(result) != 2 or not re.fullmatch(r"[0-9a-f]{40}", result[0]):
-                raise ValueError("Invalid upstream revision")
-            commits[repo] = result[0]
-        manifest = {}
-        for name, (repo, path) in SOURCES.items():
-            url = f"https://raw.githubusercontent.com/{repo}/{commits[repo]}/{path}"
-            target = cache / (name + ".part")
-            subprocess.run(["curl", "--fail", "--silent", "--show-error", "--location", "--retry", "3",
-                            "--connect-timeout", "20", "--max-time", "180", "-o", str(target), url], check=True)
-            data = target.read_bytes()
-            if not data:
-                raise ValueError("Empty Meta source")
-            target.replace(cache / name)
-            manifest[name] = {"url": url, "commit": commits[repo], "sha256": sha(data)}
-        (cache / "inputs.json").write_text(json.dumps(manifest, sort_keys=True))
-    raw = {name: (cache / name).read_bytes() for name in SOURCES}
-    revisions = set()
-    for name, (repo, path) in SOURCES.items():
-        entry = manifest[name]
-        if not re.fullmatch(r"[0-9a-f]{40}", entry["commit"]):
-            raise ValueError("Invalid cached revision")
-        expected = f"https://raw.githubusercontent.com/{repo}/{entry['commit']}/{path}"
-        if entry["url"] != expected or sha(raw[name]) != entry["sha256"]:
-            raise ValueError("Offline Meta source URL or digest mismatch")
-        if repo.startswith("v2fly/"):
-            revisions.add(entry["commit"])
-    if len(revisions) != 1:
-        raise ValueError("Meta primary sources must share a snapshot")
-    return raw, manifest
+    return pinned_inputs(SOURCES, cache, offline)
 
 
 def primary_rules(text):

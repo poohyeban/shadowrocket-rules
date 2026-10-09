@@ -1,0 +1,365 @@
+{
+  "aggregates": {
+    "China/China-NoResolve.list": [
+      "China/Sources/China-v2fly-Domain.list",
+      "China/Sources/China-GeoIP-NoResolve.list"
+    ],
+    "China/China.list": [
+      "China/Sources/China-v2fly-Domain.list",
+      "China/Sources/China-GeoIP.list"
+    ],
+    "Claude/Claude-NoResolve.list": [
+      "Claude/Sources/Claude-v2fly.list",
+      "Claude/Sources/Claude-ASN-IP-NoResolve.list"
+    ],
+    "Claude/Claude.list": [
+      "Claude/Sources/Claude-v2fly.list",
+      "Claude/Sources/Claude-ASN-IP.list"
+    ],
+    "Facebook/Facebook.list": [
+      "Facebook/Sources/Facebook-v2fly.list",
+      "Facebook/Sources/Facebook-Sukka.list"
+    ],
+    "Instagram/Instagram.list": [
+      "Instagram/Sources/Instagram-v2fly.list",
+      "Instagram/Sources/Instagram-Sukka.list"
+    ],
+    "OpenAI/OpenAI-NoResolve.list": [
+      "OpenAI/Sources/OpenAI-v2fly.list",
+      "OpenAI/Sources/OpenAI-Official-Domain.list",
+      "OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list",
+      "OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list"
+    ],
+    "OpenAI/OpenAI.list": [
+      "OpenAI/Sources/OpenAI-v2fly.list",
+      "OpenAI/Sources/OpenAI-Official-Domain.list",
+      "OpenAI/Sources/OpenAI-ASN-IP.list",
+      "OpenAI/Sources/OpenAI-Voice-IP.list"
+    ],
+    "WhatsApp/WhatsApp.list": [
+      "WhatsApp/Sources/WhatsApp-v2fly.list",
+      "WhatsApp/Sources/WhatsApp-Sukka.list"
+    ]
+  },
+  "allowed_types": [
+    "DOMAIN",
+    "DOMAIN-KEYWORD",
+    "DOMAIN-SUFFIX",
+    "DOMAIN-WILDCARD",
+    "IP-CIDR"
+  ],
+  "files": {
+    "AdGuard/Ad-Domain.list": {
+      "ip_versions": {},
+      "rules": 178597,
+      "sha256": "368ba1554b5798ae2f041ab4c6d2aaa22f8db88e3fa7120d7d8bfc55ce7da23f",
+      "types": {
+        "DOMAIN-SUFFIX": 178597
+      }
+    },
+    "China/China-NoResolve.list": {
+      "ip_versions": {
+        "4": 8196,
+        "6": 11484
+      },
+      "rules": 26301,
+      "sha256": "56091f9699de77e262e4a7e33abbf889470b62c6b304fcf24f74fb93cef6c3f4",
+      "types": {
+        "DOMAIN": 44,
+        "DOMAIN-SUFFIX": 6577,
+        "IP-CIDR": 19680
+      }
+    },
+    "China/China.list": {
+      "ip_versions": {
+        "4": 8196,
+        "6": 11484
+      },
+      "rules": 26301,
+      "sha256": "5136408af48329d6caf27a560c5358f941bcf2e68c58e5be90976d0a1c6cba4b",
+      "types": {
+        "DOMAIN": 44,
+        "DOMAIN-SUFFIX": 6577,
+        "IP-CIDR": 19680
+      }
+    },
+    "China/Sources/China-GeoIP-NoResolve.list": {
+      "ip_versions": {
+        "4": 8196,
+        "6": 11484
+      },
+      "rules": 19680,
+      "sha256": "bf82008f95a4806edccbcd4f6c2fc847a3e17debb8c9d4de42467eb4689e8f73",
+      "types": {
+        "IP-CIDR": 19680
+      }
+    },
+    "China/Sources/China-GeoIP.list": {
+      "ip_versions": {
+        "4": 8196,
+        "6": 11484
+      },
+      "rules": 19680,
+      "sha256": "5983c8614ca4cb2624a920bca6730cbbc34055f82a0b2099b16019d2a3719fc6",
+      "types": {
+        "IP-CIDR": 19680
+      }
+    },
+    "China/Sources/China-v2fly-Domain.list": {
+      "ip_versions": {},
+      "rules": 6621,
+      "sha256": "8a1d95a9bbbeb3310c122af1b8927c4ca9088ef9d28dfc9c05d11bb28a1b32bb",
+      "types": {
+        "DOMAIN": 44,
+        "DOMAIN-SUFFIX": 6577
+      }
+    },
+    "Claude/Claude-NoResolve.list": {
+      "ip_versions": {
+        "4": 1,
+        "6": 2
+      },
+      "rules": 12,
+      "sha256": "63fd16b30ab89299202588689452d463e27dbb884cf66cfaec6adceeb648d21a",
+      "types": {
+        "DOMAIN": 1,
+        "DOMAIN-SUFFIX": 8,
+        "IP-CIDR": 3
+      }
+    },
+    "Claude/Claude.list": {
+      "ip_versions": {
+        "4": 1,
+        "6": 2
+      },
+      "rules": 12,
+      "sha256": "f0be85a4459c89802ed060a741ca896c239cc478e4f9ac1b8198d6da600219df",
+      "types": {
+        "DOMAIN": 1,
+        "DOMAIN-SUFFIX": 8,
+        "IP-CIDR": 3
+      }
+    },
+    "Claude/Sources/Claude-ASN-IP-NoResolve.list": {
+      "ip_versions": {
+        "4": 1,
+        "6": 2
+      },
+      "rules": 3,
+      "sha256": "0a94f917c1389dadf8e0cfc64863b26b27ddb1b5bb634fdf19fb5c8eba9820ef",
+      "types": {
+        "IP-CIDR": 3
+      }
+    },
+    "Claude/Sources/Claude-ASN-IP.list": {
+      "ip_versions": {
+        "4": 1,
+        "6": 2
+      },
+      "rules": 3,
+      "sha256": "600a5cef2e0715b8e9299d588b382958abbc78769eb95a3aebc3c75f31ecef5a",
+      "types": {
+        "IP-CIDR": 3
+      }
+    },
+    "Claude/Sources/Claude-v2fly.list": {
+      "ip_versions": {},
+      "rules": 9,
+      "sha256": "b2b8e9a3a14980d2bcf8ef4e2ec231894855089533f6f3054af50b8d6636f64f",
+      "types": {
+        "DOMAIN": 1,
+        "DOMAIN-SUFFIX": 8
+      }
+    },
+    "Facebook/Facebook.list": {
+      "ip_versions": {},
+      "rules": 397,
+      "sha256": "0e9274f964a46c101191c25fed9c3c9b1d88153db34f9a1f37046c1f1a3433d7",
+      "types": {
+        "DOMAIN": 1,
+        "DOMAIN-SUFFIX": 396
+      }
+    },
+    "Facebook/Sources/Facebook-Sukka.list": {
+      "ip_versions": {},
+      "rules": 11,
+      "sha256": "cc3d1a0529d1d8be8ff03931b54abe5d3e1fc8a54954d987dce312afda4d12ed",
+      "types": {
+        "DOMAIN-SUFFIX": 11
+      }
+    },
+    "Facebook/Sources/Facebook-v2fly.list": {
+      "ip_versions": {},
+      "rules": 397,
+      "sha256": "1928c4fdc7b83386e15bca42bc7fa96dd39c26b72f4f0ffe1bf4f1a14a1b582d",
+      "types": {
+        "DOMAIN": 1,
+        "DOMAIN-SUFFIX": 396
+      }
+    },
+    "Instagram/Instagram.list": {
+      "ip_versions": {},
+      "rules": 73,
+      "sha256": "eaf92742808fee755212db29fa6e3b04509276741bf776d70c8cf996734c3756",
+      "types": {
+        "DOMAIN-SUFFIX": 73
+      }
+    },
+    "Instagram/Sources/Instagram-Sukka.list": {
+      "ip_versions": {},
+      "rules": 3,
+      "sha256": "293cf619c523dad30f34fdbf7f119be1072615f7f6fec21a502a6f053f561661",
+      "types": {
+        "DOMAIN-SUFFIX": 3
+      }
+    },
+    "Instagram/Sources/Instagram-v2fly.list": {
+      "ip_versions": {},
+      "rules": 74,
+      "sha256": "ffe88edb443f2be5b3a9195dcd432994c01b5a8f1cf370a865e453f0134a8ed7",
+      "types": {
+        "DOMAIN-SUFFIX": 74
+      }
+    },
+    "OpenAI/OpenAI-NoResolve.list": {
+      "ip_versions": {
+        "4": 24
+      },
+      "rules": 59,
+      "sha256": "413295d2e4e3a4b2642e899691b35e335776d5120869a0cdd18c75759da2ed48",
+      "types": {
+        "DOMAIN": 16,
+        "DOMAIN-SUFFIX": 13,
+        "DOMAIN-WILDCARD": 6,
+        "IP-CIDR": 24
+      }
+    },
+    "OpenAI/OpenAI.list": {
+      "ip_versions": {
+        "4": 24
+      },
+      "rules": 59,
+      "sha256": "84bb926f248d1363123577f59e408a20e7ef6253228d371be4b7159070d0efd1",
+      "types": {
+        "DOMAIN": 16,
+        "DOMAIN-SUFFIX": 13,
+        "DOMAIN-WILDCARD": 6,
+        "IP-CIDR": 24
+      }
+    },
+    "OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list": {
+      "ip_versions": {
+        "4": 1
+      },
+      "rules": 1,
+      "sha256": "54ddd85d0ae183a728e6ee11bd1b96f8ccfd89baa53d9e45eaf26c01f52b0c6f",
+      "types": {
+        "IP-CIDR": 1
+      }
+    },
+    "OpenAI/Sources/OpenAI-ASN-IP.list": {
+      "ip_versions": {
+        "4": 1
+      },
+      "rules": 1,
+      "sha256": "7faf16119bac5abc6da0a546f1d13e3fc39f37713873c971fd79d0456ec7895b",
+      "types": {
+        "IP-CIDR": 1
+      }
+    },
+    "OpenAI/Sources/OpenAI-Official-Domain.list": {
+      "ip_versions": {},
+      "rules": 13,
+      "sha256": "699bdeb849b5c7788baf794ab8ba04ea778b0e0d31eda8fe1e16250b92449300",
+      "types": {
+        "DOMAIN": 7,
+        "DOMAIN-WILDCARD": 6
+      }
+    },
+    "OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list": {
+      "ip_versions": {
+        "4": 23
+      },
+      "rules": 23,
+      "sha256": "17eb25311f86db741ae83e4c8266176b720068d4be15c8c829d5883ad4707699",
+      "types": {
+        "IP-CIDR": 23
+      }
+    },
+    "OpenAI/Sources/OpenAI-Voice-IP.list": {
+      "ip_versions": {
+        "4": 23
+      },
+      "rules": 23,
+      "sha256": "9d2a7c6f03c4bb5daee7e74430d902d037d2425a479a7d5939d792e9a93f7d88",
+      "types": {
+        "IP-CIDR": 23
+      }
+    },
+    "OpenAI/Sources/OpenAI-v2fly.list": {
+      "ip_versions": {},
+      "rules": 22,
+      "sha256": "0e39b862fa1aee0c378c218af134f1a285b7a9997cc42e00f67fc98e739154c5",
+      "types": {
+        "DOMAIN": 9,
+        "DOMAIN-SUFFIX": 13
+      }
+    },
+    "WhatsApp/Sources/WhatsApp-Sukka.list": {
+      "ip_versions": {},
+      "rules": 1,
+      "sha256": "f0f54279df9b33f8e0b66c2a2d393169ad0b2a1dff71e46d2f0c3e97d5e0448b",
+      "types": {
+        "DOMAIN-SUFFIX": 1
+      }
+    },
+    "WhatsApp/Sources/WhatsApp-v2fly.list": {
+      "ip_versions": {},
+      "rules": 11,
+      "sha256": "e9e2e72eb241fa25a142eea216e67858f48434c01a6ed1ef5213af59acf4cc27",
+      "types": {
+        "DOMAIN-SUFFIX": 11
+      }
+    },
+    "WhatsApp/WhatsApp.list": {
+      "ip_versions": {},
+      "rules": 11,
+      "sha256": "e9e2e72eb241fa25a142eea216e67858f48434c01a6ed1ef5213af59acf4cc27",
+      "types": {
+        "DOMAIN-SUFFIX": 11
+      }
+    }
+  },
+  "minimum_shadowrocket_for_wildcards": "2.2.65",
+  "no_resolve_pairs": [
+    [
+      "China/China.list",
+      "China/China-NoResolve.list"
+    ],
+    [
+      "China/Sources/China-GeoIP.list",
+      "China/Sources/China-GeoIP-NoResolve.list"
+    ],
+    [
+      "Claude/Claude.list",
+      "Claude/Claude-NoResolve.list"
+    ],
+    [
+      "Claude/Sources/Claude-ASN-IP.list",
+      "Claude/Sources/Claude-ASN-IP-NoResolve.list"
+    ],
+    [
+      "OpenAI/OpenAI.list",
+      "OpenAI/OpenAI-NoResolve.list"
+    ],
+    [
+      "OpenAI/Sources/OpenAI-ASN-IP.list",
+      "OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list"
+    ],
+    [
+      "OpenAI/Sources/OpenAI-Voice-IP.list",
+      "OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list"
+    ]
+  ],
+  "validation_scope": "static syntax and source consistency; no client runtime test"
+}

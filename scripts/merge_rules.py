@@ -17,7 +17,9 @@ else:
 DOMAIN_TYPES = frozenset(
     {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-WILDCARD", "DOMAIN-KEYWORD"}
 )
-IP_TYPES = frozenset({"IP-CIDR", "IP-CIDR6"})
+# Shadowrocket uses IP-CIDR for both address families. IP-CIDR6 is a
+# Surge/Clash spelling and must not enter the generated subscriptions.
+IP_TYPES = frozenset({"IP-CIDR"})
 SUPPORTED_TYPES = DOMAIN_TYPES | IP_TYPES
 
 
@@ -74,8 +76,7 @@ def validate_rule(line: str, source: Path, line_number: int) -> None:
         raise RuleValidationError(
             f"{source}:{line_number}: invalid IP network: {value}"
         ) from error
-    expected_version = 4 if kind == "IP-CIDR" else 6
-    if network.version != expected_version or str(network) != value:
+    if str(network) != value:
         raise RuleValidationError(
             f"{source}:{line_number}: non-canonical or mismatched IP network: {value}"
         )

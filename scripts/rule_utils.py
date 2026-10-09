@@ -172,7 +172,7 @@ class _FiniteRegexParser:
         current = self.pattern[self.index]
         if current == "(":
             if self.pattern.startswith("(?:", self.index):
-                raise UnsafeRegexError("non-capturing groups are not in Go RE2 syntax")
+                raise UnsafeRegexError("non-capturing groups are outside the finite grammar")
             self.index += 1
             value = self._parse_expression(stop=")")
             if self.index >= len(self.pattern) or self.pattern[self.index] != ")":
@@ -209,10 +209,10 @@ class _FiniteRegexParser:
             return set("0123456789")
         if escaped == ".":
             return {"."}
-        if in_class and escaped == "-":
+        if escaped == "-":
             return {"-"}
-        if escaped in _SAFE_LITERAL_CHARS:
-            return {escaped}
+        # Letter escapes can be assertions (\b), control characters (\t),
+        # or invalid RE2 syntax. Never reinterpret them as literal letters.
         raise UnsafeRegexError(f"unsupported escape: \\{escaped}")
 
     def _parse_character_class(self) -> set[str]:

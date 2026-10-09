@@ -76,6 +76,15 @@ class FiniteRegexExpansionTests(unittest.TestCase):
         with self.assertRaises(UnsafeRegexError):
             expand_safe_hostname_regex(r"^(good\.example|bad_)$")
 
+    def test_assertions_control_and_unknown_escapes_are_never_literal_letters(self):
+        for escape in (r"\a", r"\b", r"\f", r"\n", r"\r", r"\t", r"\v", r"\q", r"\1"):
+            for pattern in (f"^{escape}foo\\.example$", f"^[{escape}]foo\\.example$"):
+                with self.subTest(pattern=pattern), self.assertRaises(UnsafeRegexError):
+                    expand_safe_hostname_regex(pattern)
+
+    def test_escaped_hyphen_remains_literal(self):
+        self.assertEqual(expand_safe_hostname_regex(r"^foo\-bar\.example$"), ["foo-bar.example"])
+
 
 class RuleIntersectionTests(unittest.TestCase):
     def test_suffix_exception_intersects_ancestor_block(self):

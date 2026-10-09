@@ -224,6 +224,12 @@ def _unwrap_regex(pattern: str) -> str | None:
 def _regex_requires_non_hostname_character(pattern: str) -> bool:
     """Prove a regex cannot match a hostname via a required top-level '#'."""
 
+    # Counted repetitions and extended groups can make a supposedly required
+    # '#' optional, e.g. #{0} or (?x) with a comment. Decline the proof for
+    # these constructs and let the caller fail closed for the exception.
+    if "{" in pattern or "(?" in pattern:
+        return False
+
     depth = 0
     in_class = False
     escaped = False

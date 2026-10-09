@@ -86,13 +86,13 @@ class ASNConversionTests(unittest.TestCase):
                 regular.read_text(encoding="utf-8"),
                 "IP-CIDR,192.0.2.0/24\n"
                 "IP-CIDR,198.51.100.0/24\n"
-                "IP-CIDR6,2001:db8:1::/48\n",
+                "IP-CIDR,2001:db8:1::/48\n",
             )
             self.assertEqual(
                 no_resolve.read_text(encoding="utf-8"),
                 "IP-CIDR,192.0.2.0/24,no-resolve\n"
                 "IP-CIDR,198.51.100.0/24,no-resolve\n"
-                "IP-CIDR6,2001:db8:1::/48,no-resolve\n",
+                "IP-CIDR,2001:db8:1::/48,no-resolve\n",
             )
 
     def test_duplicate_networks_are_removed(self):

@@ -14,6 +14,7 @@
 cdn.workos.com
 challenges.cloudflare.com
 forwarder.workos.com
+frontend-apps-multi-region.workos.com
 humb.apple.com
 images.workoscdn.com
 js.intercomcdn.com

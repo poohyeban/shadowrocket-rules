@@ -10,6 +10,7 @@ from scripts.merge_rules import (
     RuleValidationError,
     merge_files,
     validate_pair,
+    validate_rule,
 )
 
 
@@ -18,6 +19,13 @@ BUILD = REPOSITORY / "build"
 
 
 class MergeRulesTests(unittest.TestCase):
+    def test_client_incompatible_and_logic_types_are_rejected(self):
+        for line in ("IP-CIDR6,2001:db8::/32", "AND,((DOMAIN,example.com))",
+                     "OR,((DOMAIN,example.com))", "NOT,((DOMAIN,example.com))",
+                     "DOMAIN-REGEX,^example.com$", "IP-CIDR,192.0.2.0/24,PROXY"):
+            with self.subTest(line=line), self.assertRaises(RuleValidationError):
+                validate_rule(line, Path("test.list"), 1)
+
     def write(self, root: Path, name: str, content: str) -> Path:
         path = root / name
         with path.open("w", encoding="utf-8", newline="\n") as output_file:
@@ -56,7 +64,7 @@ class MergeRulesTests(unittest.TestCase):
             "DOMAIN-WILDCARD,*.openai.com\n"
             "DOMAIN-KEYWORD,openai\n"
             "IP-CIDR,192.0.2.0/24\n"
-            "IP-CIDR6,2001:db8::/32\n"
+            "IP-CIDR,2001:db8::/32\n"
         )
         BUILD.mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(dir=BUILD) as directory:
@@ -83,14 +91,14 @@ class MergeRulesTests(unittest.TestCase):
                 "regular.list",
                 "DOMAIN-SUFFIX,openai.com\n"
                 "IP-CIDR,192.0.2.0/24\n"
-                "IP-CIDR6,2001:db8::/32\n",
+                "IP-CIDR,2001:db8::/32\n",
             )
             no_resolve = self.write(
                 root,
                 "no-resolve.list",
                 "DOMAIN-SUFFIX,openai.com\n"
                 "IP-CIDR,192.0.2.0/24,no-resolve\n"
-                "IP-CIDR6,2001:db8::/32,no-resolve\n",
+                "IP-CIDR,2001:db8::/32,no-resolve\n",
             )
             with contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(validate_pair(regular, no_resolve), (1, 2))
@@ -107,13 +115,13 @@ class MergeRulesTests(unittest.TestCase):
             geoip = self.write(
                 root,
                 "China-GeoIP.list",
-                "IP-CIDR,192.0.2.0/24\nIP-CIDR6,2001:db8::/32\n",
+                "IP-CIDR,192.0.2.0/24\nIP-CIDR,2001:db8::/32\n",
             )
             geoip_no_resolve = self.write(
                 root,
                 "China-GeoIP-NoResolve.list",
                 "IP-CIDR,192.0.2.0/24,no-resolve\n"
-                "IP-CIDR6,2001:db8::/32,no-resolve\n",
+                "IP-CIDR,2001:db8::/32,no-resolve\n",
             )
             regular = root / "China.list"
             no_resolve = root / "China-NoResolve.list"

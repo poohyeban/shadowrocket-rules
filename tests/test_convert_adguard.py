@@ -113,6 +113,17 @@ class AdGuardConversionTests(unittest.TestCase):
         self.assertEqual(output, b"DOMAIN-SUFFIX,example.com\n")
         self.assertEqual(stats.exceptions_unsupported_safe, 1)
 
+    def test_optional_hash_exception_must_not_be_dismissed_as_irrelevant(self):
+        for regex in (r"/^example\.com#{0}$/", r"/^example\.com#{0,2}$/"):
+            with self.subTest(regex=regex), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                source, output = root / "filter", root / "rules"
+                source.write_text("||example.com^\n@@" + regex + "\n")
+                output.write_text("previous content\n")
+                with self.assertRaises(UnsafeExceptionError):
+                    convert_file(source, output)
+                self.assertEqual(output.read_text(), "previous content\n")
+
     def test_partial_and_url_patterns_are_not_guessed(self):
         output, stats = self.convert("://ads.example.com^\n.example.com^\n")
         self.assertEqual(output, b"")
