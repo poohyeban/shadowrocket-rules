@@ -10,11 +10,11 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4408739,
-      "sha256": "7fce2a9f0deb99b102761d086e427293a6b15299f022e2eb6c30d2a0b7ef1a63",
+      "bytes": 4409756,
+      "sha256": "f2dbbbf0926ad055566ea97bd3f87987f8fd51185d7c6fab986ec9e4a1382f4c",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-09T20:15:49.758Z"
+        "! Last modified: 2026-10-10T00:43:51.399Z"
       ]
     },
     "asn-database": {
