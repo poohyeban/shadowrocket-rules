@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4409756,
-      "sha256": "f2dbbbf0926ad055566ea97bd3f87987f8fd51185d7c6fab986ec9e4a1382f4c",
+      "bytes": 4414487,
+      "sha256": "b23d8da549a32c07693d88655ab96f2d1ef8aa5e596cdd864e75afa0522152b6",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-10T00:43:51.399Z"
+        "! Last modified: 2026-10-10T20:15:05.209Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-10-06T08:15:27+00:00",
-      "bytes": 12085041,
+      "build_time": "2026-10-09T08:15:26+00:00",
+      "bytes": 8983422,
       "database_type": "GeoLite2-ASN",
-      "sha256": "d81af0fdca127edf5e7e1069bab52244b2eb0f0f4e2602f281405e85d22dbcf2",
+      "sha256": "c9dea128931a6ed769706775844c42e98838e0790dbd03b58c92e5aa4cefa57a",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -31,10 +31,10 @@
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
-      "build_time": "2026-10-06T21:21:33+00:00",
-      "bytes": 3405161,
+      "build_time": "2026-10-09T16:52:08+00:00",
+      "bytes": 3410978,
       "database_type": "GeoLite2-Country",
-      "sha256": "0546112e365380d4315e8058f1c176480d377b4323f66a5a1e20d100c9aab8ba",
+      "sha256": "635078e412c4443a2950c2e3f775ccdc400e0a1fea5ffd32e5489e5401a9e51d",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
@@ -62,9 +62,9 @@
     },
     "meta-sukka": {
       "bytes": 34613,
-      "commit": "1c454d540ff76a50e7828a7fe95583701905e306",
+      "commit": "6172daf80ac3f9a1d2dbdb9ad6b559554aa8ac62",
       "sha256": "43ab6e136b20f9f28cd54f0c565a6d81198053f62425c4a4beba9e2992b42471",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/1c454d540ff76a50e7828a7fe95583701905e306/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/6172daf80ac3f9a1d2dbdb9ad6b559554aa8ac62/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
