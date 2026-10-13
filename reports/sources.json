@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4477100,
-      "sha256": "6c9b8af783c033cae509b3a995a5375539a6fb9327c5cafaa96d46cfabc512a8",
+      "bytes": 4482989,
+      "sha256": "91b6c70aa5011d2232c5d11a59d18f302221f19a3cd6bac1394e019a897e7135",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-13T02:33:29.595Z"
+        "! Last modified: 2026-10-13T20:15:28.997Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-10-09T08:15:26+00:00",
-      "bytes": 8983422,
+      "build_time": "2026-10-12T08:15:43+00:00",
+      "bytes": 8969597,
       "database_type": "GeoLite2-ASN",
-      "sha256": "c9dea128931a6ed769706775844c42e98838e0790dbd03b58c92e5aa4cefa57a",
+      "sha256": "7d1cf6cd79a0f35b446570058efb7d05cb6db6dd10bbbc09c3699473f6860cba",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
