@@ -51,10 +51,10 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 184522,
-      "sha256": "dada493b9956564405f74a23c2134b8e4ef2bdb1b1a67d1f69fa9ccb9869efbb",
+      "rules": 184826,
+      "sha256": "3cf6f1b58698a69fa6a696cae5c3e31b48538ba52f4bd50443bf792775bfa060",
       "types": {
-        "DOMAIN-SUFFIX": 184522
+        "DOMAIN-SUFFIX": 184826
       }
     },
     "China/China-NoResolve.list": {
@@ -225,11 +225,11 @@
       "ip_versions": {
         "4": 24
       },
-      "rules": 59,
-      "sha256": "413295d2e4e3a4b2642e899691b35e335776d5120869a0cdd18c75759da2ed48",
+      "rules": 60,
+      "sha256": "0a133aee7c5693c54e6227267deaa9192b28380c8786982299b6d7d197b1a5c8",
       "types": {
         "DOMAIN": 16,
-        "DOMAIN-SUFFIX": 13,
+        "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
         "IP-CIDR": 24
       }
@@ -238,11 +238,11 @@
       "ip_versions": {
         "4": 24
       },
-      "rules": 59,
-      "sha256": "84bb926f248d1363123577f59e408a20e7ef6253228d371be4b7159070d0efd1",
+      "rules": 60,
+      "sha256": "2dc02715a090a11ef05ef28e4508d4c79adc02ee9c01dfee8396d3eab1d6f4cd",
       "types": {
         "DOMAIN": 16,
-        "DOMAIN-SUFFIX": 13,
+        "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
         "IP-CIDR": 24
       }
@@ -298,11 +298,11 @@
     },
     "OpenAI/Sources/OpenAI-v2fly.list": {
       "ip_versions": {},
-      "rules": 22,
-      "sha256": "0e39b862fa1aee0c378c218af134f1a285b7a9997cc42e00f67fc98e739154c5",
+      "rules": 23,
+      "sha256": "c2b7d73e3b8b310d03e9c1f1db15ec174eb51d4deed0856d0c4313aa63dbe2d5",
       "types": {
         "DOMAIN": 9,
-        "DOMAIN-SUFFIX": 13
+        "DOMAIN-SUFFIX": 14
       }
     },
     "WhatsApp/Sources/WhatsApp-Sukka.list": {
