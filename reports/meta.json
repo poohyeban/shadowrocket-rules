@@ -52,24 +52,24 @@
   "review_sha256": "36dbaced73c24886823f973acf52faeb7d2291ce90763810c4e1dc73de7b39be",
   "sources": {
     "facebook": {
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/facebook"
     },
     "instagram": {
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/instagram"
     },
     "sukka": {
-      "commit": "5974bf6e75a5a8bec367dd138d052a190caab79d",
-      "sha256": "43ab6e136b20f9f28cd54f0c565a6d81198053f62425c4a4beba9e2992b42471",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/5974bf6e75a5a8bec367dd138d052a190caab79d/Source/non_ip/global.conf"
+      "commit": "395fb20a404b49523a526371049702c6098da649",
+      "sha256": "654057a5da991f48348c39d499010ce997c41e3a518725b0566a1c533743cb6f",
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/395fb20a404b49523a526371049702c6098da649/Source/non_ip/global.conf"
     },
     "whatsapp": {
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/whatsapp"
     }
   },
   "sukka_selection": {

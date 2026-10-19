@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4524376,
-      "sha256": "367588c57e1af42c869ff09c281882b5ca2d13e78cb6fa5dc3dab2bacb71f3b3",
+      "bytes": 4582942,
+      "sha256": "ab8f552ae37ce8fc0ce51cedb2506ba1cc0d50b9937080a4b2e72391e8d61fca",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-18T22:11:54.941Z"
+        "! Last modified: 2026-10-19T20:15:20.818Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-10-15T08:15:05+00:00",
-      "bytes": 8974228,
+      "build_time": "2026-10-18T08:15:26+00:00",
+      "bytes": 8976705,
       "database_type": "GeoLite2-ASN",
-      "sha256": "19eb1c04e53989baa1292cbd3b3d0e9904f69be2ac64549163f857fdda73501e",
+      "sha256": "8802642a9576230b316a4f44fbeae4c84d9fa0fc0e51522d6b846d2a6a56dfe0",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -31,10 +31,10 @@
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
-      "build_time": "2026-10-13T17:25:50+00:00",
-      "bytes": 3407020,
+      "build_time": "2026-10-16T18:58:36+00:00",
+      "bytes": 3408573,
       "database_type": "GeoLite2-Country",
-      "sha256": "7ce2f6f453ee36dfd154b3eb1f7e1b8f7ea0248cb655bf25a39d7bfa86c4abe0",
+      "sha256": "55fb913b4a5ab69fb0bbe11f86242b8a3f64061205227f4c1efceef7e14e5dbc",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
@@ -44,33 +44,33 @@
     },
     "claude-anthropic": {
       "bytes": 163,
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "bf48dc1b342bbfd06f2a93ee8ce180fc424d9c041dafd2d182ffb3f4186698b4",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/anthropic"
     },
     "meta-facebook": {
       "bytes": 6391,
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/facebook"
     },
     "meta-instagram": {
       "bytes": 1326,
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/instagram"
     },
     "meta-sukka": {
-      "bytes": 34613,
-      "commit": "5974bf6e75a5a8bec367dd138d052a190caab79d",
-      "sha256": "43ab6e136b20f9f28cd54f0c565a6d81198053f62425c4a4beba9e2992b42471",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/5974bf6e75a5a8bec367dd138d052a190caab79d/Source/non_ip/global.conf"
+      "bytes": 34638,
+      "commit": "395fb20a404b49523a526371049702c6098da649",
+      "sha256": "654057a5da991f48348c39d499010ce997c41e3a518725b0566a1c533743cb6f",
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/395fb20a404b49523a526371049702c6098da649/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
-      "commit": "6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5",
+      "commit": "6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6b0f8edc935ee0ad2cb386ac3efd451ee2380ac5/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/6ee52f2c36634aeabeb9c4ba486ca02cd84c3d4f/data/whatsapp"
     },
     "openai-domains": {
       "bytes": 690,
