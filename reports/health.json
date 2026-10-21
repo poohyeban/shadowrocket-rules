@@ -51,10 +51,10 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 189114,
-      "sha256": "3ba22145699ef8d476b86b5a7dab0cc9324d2d2c77226491958025a955145e7f",
+      "rules": 189445,
+      "sha256": "1d7b49d7c2f8db258fce4c92ca5417b73fcfc83ed1e303f46297480d5270e623",
       "types": {
-        "DOMAIN-SUFFIX": 189114
+        "DOMAIN-SUFFIX": 189445
       }
     },
     "China/China-NoResolve.list": {
@@ -119,11 +119,11 @@
         "4": 1,
         "6": 2
       },
-      "rules": 12,
-      "sha256": "63fd16b30ab89299202588689452d463e27dbb884cf66cfaec6adceeb648d21a",
+      "rules": 22,
+      "sha256": "016bcca409622697ae32c187454f7d690492b5808f9cd73e6408fd316db800ed",
       "types": {
         "DOMAIN": 1,
-        "DOMAIN-SUFFIX": 8,
+        "DOMAIN-SUFFIX": 18,
         "IP-CIDR": 3
       }
     },
@@ -132,11 +132,11 @@
         "4": 1,
         "6": 2
       },
-      "rules": 12,
-      "sha256": "f0be85a4459c89802ed060a741ca896c239cc478e4f9ac1b8198d6da600219df",
+      "rules": 22,
+      "sha256": "cb8c097fb87ee0a94a3fb70701bc5882c0e14a57a806d6f314679f40c734d826",
       "types": {
         "DOMAIN": 1,
-        "DOMAIN-SUFFIX": 8,
+        "DOMAIN-SUFFIX": 18,
         "IP-CIDR": 3
       }
     },
@@ -164,11 +164,11 @@
     },
     "Claude/Sources/Claude-v2fly.list": {
       "ip_versions": {},
-      "rules": 9,
-      "sha256": "b2b8e9a3a14980d2bcf8ef4e2ec231894855089533f6f3054af50b8d6636f64f",
+      "rules": 19,
+      "sha256": "f4894c9047dc06bc6ed233d4816d673e64fb819d372c7f0f50ae28ea2f673802",
       "types": {
         "DOMAIN": 1,
-        "DOMAIN-SUFFIX": 8
+        "DOMAIN-SUFFIX": 18
       }
     },
     "Facebook/Facebook.list": {
@@ -225,10 +225,10 @@
       "ip_versions": {
         "4": 24
       },
-      "rules": 60,
-      "sha256": "0a133aee7c5693c54e6227267deaa9192b28380c8786982299b6d7d197b1a5c8",
+      "rules": 61,
+      "sha256": "a49f30d8b67d3aa2285a86f1033002d365fb6ba14bcb9989fd0b00c41265190a",
       "types": {
-        "DOMAIN": 16,
+        "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
         "IP-CIDR": 24
@@ -238,10 +238,10 @@
       "ip_versions": {
         "4": 24
       },
-      "rules": 60,
-      "sha256": "2dc02715a090a11ef05ef28e4508d4c79adc02ee9c01dfee8396d3eab1d6f4cd",
+      "rules": 61,
+      "sha256": "2a4db15710eedcc8414f6b8c8405227b799ed425b9dccc9238929b577206bd94",
       "types": {
-        "DOMAIN": 16,
+        "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
         "IP-CIDR": 24
@@ -298,10 +298,10 @@
     },
     "OpenAI/Sources/OpenAI-v2fly.list": {
       "ip_versions": {},
-      "rules": 23,
-      "sha256": "c2b7d73e3b8b310d03e9c1f1db15ec174eb51d4deed0856d0c4313aa63dbe2d5",
+      "rules": 24,
+      "sha256": "b5c34e1fc50d9d18a1750686f922cbc8cde06278b3098dbdf64298142bfc7792",
       "types": {
-        "DOMAIN": 9,
+        "DOMAIN": 10,
         "DOMAIN-SUFFIX": 14
       }
     },

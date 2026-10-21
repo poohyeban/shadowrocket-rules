@@ -5,6 +5,7 @@ DOMAIN,chat.openai.com
 DOMAIN,desktop.chat.openai.com
 DOMAIN,ios.chat.openai.com
 DOMAIN,o33249.ingest.sentry.io
+DOMAIN,o33249.ingest.us.sentry.io
 DOMAIN,openai.qualtrics.com
 DOMAIN,openaiapi-site.azureedge.net
 DOMAIN,openaiassets.blob.core.windows.net
