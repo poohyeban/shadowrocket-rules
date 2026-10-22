@@ -51,58 +51,58 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 189477,
-      "sha256": "2626be204a5059b2d6db6f1fb0a3faac35854496a4c08e91ab1c2f8904ce8640",
+      "rules": 189789,
+      "sha256": "bf5557fa098f9a6236cacc49e838dcbaeb4345637b5220efe6602fdbf9af5d59",
       "types": {
-        "DOMAIN-SUFFIX": 189477
+        "DOMAIN-SUFFIX": 189789
       }
     },
     "China/China-NoResolve.list": {
       "ip_versions": {
-        "4": 8104,
-        "6": 11469
+        "4": 7957,
+        "6": 11532
       },
-      "rules": 26196,
-      "sha256": "7c84863c87a754c272703e7e903303eee1de796a5e9467850a627ab7bad4490d",
+      "rules": 26112,
+      "sha256": "b36c9ea367d6c31f19c44462b99869afa4a160632556786cdce7f13df8a0dec9",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6579,
-        "IP-CIDR": 19573
+        "IP-CIDR": 19489
       }
     },
     "China/China.list": {
       "ip_versions": {
-        "4": 8104,
-        "6": 11469
+        "4": 7957,
+        "6": 11532
       },
-      "rules": 26196,
-      "sha256": "7a7101755b61154561306ab4a6004ad1d272bcb45ee82adbb98e26df2fa9856c",
+      "rules": 26112,
+      "sha256": "0f5dbefba9843c3c635df3e1d42bbffbae4cd12c43e2a76ed7e1d00e6a764bc8",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6579,
-        "IP-CIDR": 19573
+        "IP-CIDR": 19489
       }
     },
     "China/Sources/China-GeoIP-NoResolve.list": {
       "ip_versions": {
-        "4": 8104,
-        "6": 11469
+        "4": 7957,
+        "6": 11532
       },
-      "rules": 19573,
-      "sha256": "8a9a6c5de1a27fb6c7e7d5db3375d0b4dca0b9158d754ad00e62a39932064fb8",
+      "rules": 19489,
+      "sha256": "5c271ba28e94d2491e72e26c9dd7774f156c3490dd0f94e060bc99e310548393",
       "types": {
-        "IP-CIDR": 19573
+        "IP-CIDR": 19489
       }
     },
     "China/Sources/China-GeoIP.list": {
       "ip_versions": {
-        "4": 8104,
-        "6": 11469
+        "4": 7957,
+        "6": 11532
       },
-      "rules": 19573,
-      "sha256": "44bd8cf3b50aeff50e033f4df6defc45ce9cc944f0dcc78672ec50ddc7876902",
+      "rules": 19489,
+      "sha256": "605d78f52ff8e3f84fc96b05e2abef38ef2830d479981279c9e16e8fc686c27b",
       "types": {
-        "IP-CIDR": 19573
+        "IP-CIDR": 19489
       }
     },
     "China/Sources/China-v2fly-Domain.list": {
