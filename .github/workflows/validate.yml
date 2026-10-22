@@ -16,7 +16,11 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.x"
-      - run: python -m pip install maxminddb==3.1.1
+          python-version: '3.x'
+          check-latest: true
+          allow-prereleases: false
+      - run: |
+          python -m pip install --upgrade pip
+          python -m pip install maxminddb==3.1.1
       - run: python -m unittest discover -s tests -v
       - run: python -m scripts.audit_rules --report build/health.json

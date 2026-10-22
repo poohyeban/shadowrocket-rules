@@ -30,7 +30,9 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.x"
+          python-version: '3.x'
+          check-latest: true
+          allow-prereleases: false
 
       - name: Install dependencies
         run: |

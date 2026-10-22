@@ -1,5 +1,7 @@
 # shadowrocket-rules
 
+CI 每次检查并使用最新稳定版 Python 3（`3.x` + `check-latest`，不含预发布版），同时更新 pip；转换测试通过后才会发布规则。
+
 This repository generates deterministic rulesets for Shadowrocket from several
 public and manually reviewed data sources.
 
