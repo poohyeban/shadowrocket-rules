@@ -10,11 +10,11 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4664499,
-      "sha256": "6709775ad372098fe499d7f1fa93ded310f953cfc273d4ff2af50521e581fe5b",
+      "bytes": 4507103,
+      "sha256": "cc842a22c47a7f4341054a931b653d4486291ca09e609793f5d064b96b8922cd",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-25T22:11:30.250Z"
+        "! Last modified: 2026-10-26T20:15:06.184Z"
       ]
     },
     "asn-database": {
@@ -38,43 +38,43 @@
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
-      "bytes": 136922,
-      "sha256": "abaaa3f5d5059f89573033f0833cf02a0c334a13e5abdfa31d779d77c7f6678b",
+      "bytes": 138219,
+      "sha256": "080969c3b438b25883e97f3b0de6f1b2be990e04aa82d963fde2214bd39b2719",
       "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt"
     },
     "claude-anthropic": {
       "bytes": 373,
-      "commit": "664598567e92d797bea11bb83cf939d1f37e9512",
+      "commit": "fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85",
       "sha256": "48597d05d9206b7c841be6872c7ca954685a416d7e61c9316c017ed5f28c7053",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/664598567e92d797bea11bb83cf939d1f37e9512/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85/data/anthropic"
     },
     "meta-facebook": {
       "bytes": 6391,
-      "commit": "664598567e92d797bea11bb83cf939d1f37e9512",
+      "commit": "fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/664598567e92d797bea11bb83cf939d1f37e9512/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85/data/facebook"
     },
     "meta-instagram": {
       "bytes": 1326,
-      "commit": "664598567e92d797bea11bb83cf939d1f37e9512",
+      "commit": "fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/664598567e92d797bea11bb83cf939d1f37e9512/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85/data/instagram"
     },
     "meta-sukka": {
       "bytes": 34638,
-      "commit": "0716917d9e634af7ee9227439f9be9768fc8f6de",
+      "commit": "4d3fd8fed137159305427af377349b3c52664315",
       "sha256": "654057a5da991f48348c39d499010ce997c41e3a518725b0566a1c533743cb6f",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/0716917d9e634af7ee9227439f9be9768fc8f6de/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/4d3fd8fed137159305427af377349b3c52664315/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
-      "commit": "664598567e92d797bea11bb83cf939d1f37e9512",
+      "commit": "fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/664598567e92d797bea11bb83cf939d1f37e9512/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/fa3cb96fbc210b8d6466251a1d71b4a6e63a9c85/data/whatsapp"
     },
     "openai-domains": {
-      "bytes": 727,
-      "sha256": "ec1043e63c31bbef51efe13a3e2af29a3f66b8b4692f517d75a864cbc4a3d88d",
+      "bytes": 760,
+      "sha256": "25d53e9af3e04d926210d6436bd791594ef4b86f2dc3c108510ac8059d76d969",
       "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai"
     }
   }
