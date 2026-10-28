@@ -51,19 +51,19 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 183632,
-      "sha256": "1ffdb9df8d638fb55a3faa3e505c4c9bbb3d7fd1a2cddbe07c73e9ac3f226b43",
+      "rules": 183915,
+      "sha256": "33f4d7e4aab7b4dda1a83c1f108b1cf01d4f6019cc7c7f1cc01f585b9100f4e1",
       "types": {
-        "DOMAIN-SUFFIX": 183632
+        "DOMAIN-SUFFIX": 183915
       }
     },
     "China/China-NoResolve.list": {
       "ip_versions": {
-        "4": 7963,
-        "6": 11527
+        "4": 7954,
+        "6": 11536
       },
       "rules": 26126,
-      "sha256": "7c75cf40b5a10fd7b5999101cc2e0c3d15870cae48030e8d7bccaceec85e352a",
+      "sha256": "d34d49f026d36e932a5f01a39f2c2e6a8f89f7563a8b1405d270c37183f36a51",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6592,
@@ -72,11 +72,11 @@
     },
     "China/China.list": {
       "ip_versions": {
-        "4": 7963,
-        "6": 11527
+        "4": 7954,
+        "6": 11536
       },
       "rules": 26126,
-      "sha256": "ce036a78438d7412a59c2ee5be98f352ad895c21907d081c0b8e28e4fe23a610",
+      "sha256": "39f1c8bd613e2a6f6c993cfaa9dc38e4f8dc1d63bea8a4d118f636fa5123becc",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6592,
@@ -85,22 +85,22 @@
     },
     "China/Sources/China-GeoIP-NoResolve.list": {
       "ip_versions": {
-        "4": 7963,
-        "6": 11527
+        "4": 7954,
+        "6": 11536
       },
       "rules": 19490,
-      "sha256": "242c245be475ab7e20d1f05b1f4c003ba1f7db56b99e217302070083500b77b9",
+      "sha256": "021bf434e7231bc19c147ab42636c5c3125b184277b2cec8786c61560c24f3db",
       "types": {
         "IP-CIDR": 19490
       }
     },
     "China/Sources/China-GeoIP.list": {
       "ip_versions": {
-        "4": 7963,
-        "6": 11527
+        "4": 7954,
+        "6": 11536
       },
       "rules": 19490,
-      "sha256": "bca97e464e0010ebfa7e5c5cbeb3ec1c9c2418b0caa23be2bdd73c4014b0d91d",
+      "sha256": "e265f4b974c9b6bc42d57b8e3c1bd89d3eb26225b89b80d51881015ea890e6d6",
       "types": {
         "IP-CIDR": 19490
       }
