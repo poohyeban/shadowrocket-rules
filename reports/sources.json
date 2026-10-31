@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4541299,
-      "sha256": "8b19d0387fd195ae1abcd6100cdcac4ad25b4621ee66e38ef042c0d0d86b930a",
+      "bytes": 4548203,
+      "sha256": "8e75de5fc2f2164da879ede90b3df46c1691eeb7bcf47453812700cfe15e708e",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-10-31T00:24:01.951Z"
+        "! Last modified: 2026-10-31T20:08:29.696Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-10-27T08:15:33+00:00",
-      "bytes": 8994581,
+      "build_time": "2026-10-30T08:15:15+00:00",
+      "bytes": 9002911,
       "database_type": "GeoLite2-ASN",
-      "sha256": "ab93d4ebe5287ab9a459bcd67f3d5b358e261666c16fd246543c8ba771a78bf4",
+      "sha256": "a085c526fdd3e7cab68acc80c8c6cb11dbd9b1904f879f5084a17fc954ef9fbf",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -31,10 +31,10 @@
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
-      "build_time": "2026-10-27T17:52:02+00:00",
-      "bytes": 3395840,
+      "build_time": "2026-10-30T16:50:56+00:00",
+      "bytes": 3401659,
       "database_type": "GeoLite2-Country",
-      "sha256": "54e327d9fe9214e568c5b8f8ce97a7f7e7087b7de10b0560640417695d153797",
+      "sha256": "7ef3b24a63044aee370098795c0ed01cb53bb2aaee8407dfc6475c5b42394d87",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
