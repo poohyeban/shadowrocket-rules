@@ -52,24 +52,24 @@
   "review_sha256": "36dbaced73c24886823f973acf52faeb7d2291ce90763810c4e1dc73de7b39be",
   "sources": {
     "facebook": {
-      "commit": "1daade8c4bb957d21d1f5c09c2b050d699e8e96c",
+      "commit": "01add61fbaf719b55673d969615cd328e80f214c",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/01add61fbaf719b55673d969615cd328e80f214c/data/facebook"
     },
     "instagram": {
-      "commit": "1daade8c4bb957d21d1f5c09c2b050d699e8e96c",
+      "commit": "01add61fbaf719b55673d969615cd328e80f214c",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/01add61fbaf719b55673d969615cd328e80f214c/data/instagram"
     },
     "sukka": {
-      "commit": "2ee066d7255db0ada982e37673ff4ad1e261634f",
+      "commit": "d46d9ca1a28e74f2a40f6c0bae93569f85c3aa75",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/2ee066d7255db0ada982e37673ff4ad1e261634f/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/d46d9ca1a28e74f2a40f6c0bae93569f85c3aa75/Source/non_ip/global.conf"
     },
     "whatsapp": {
-      "commit": "1daade8c4bb957d21d1f5c09c2b050d699e8e96c",
+      "commit": "01add61fbaf719b55673d969615cd328e80f214c",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1daade8c4bb957d21d1f5c09c2b050d699e8e96c/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/01add61fbaf719b55673d969615cd328e80f214c/data/whatsapp"
     }
   },
   "sukka_selection": {
