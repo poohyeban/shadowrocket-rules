@@ -3,7 +3,7 @@
     "399358": 3
   },
   "asn_source": {
-    "sha256": "149e22495c37ce2247114878584c8014824fb342a02aaf1ff5be953479851933",
+    "sha256": "81a3ae0bc347a4980766dc1d5434a3a9a8404cd371e62ee3a632ff2d4fdc0e3a",
     "target_asns": [
       399358
     ],
@@ -21,9 +21,9 @@
   "skipped": [],
   "sources": {
     "anthropic": {
-      "commit": "dd0d168c3b0dde4c92320f7857f5b2970f616361",
+      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
       "sha256": "48597d05d9206b7c841be6872c7ca954685a416d7e61c9316c017ed5f28c7053",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/dd0d168c3b0dde4c92320f7857f5b2970f616361/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/data/anthropic"
     }
   }
 }
