@@ -10,11 +10,11 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4609962,
-      "sha256": "2bfb2cb0e71439de8d0cbbd44cb91716561d6ef7592026ea5d26718b19400ee3",
+      "bytes": 4643750,
+      "sha256": "17f6d69f81a51b9d0a855aad4a96a1a7737ef47f7f173e02a48c20f559495716",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-05T00:25:09.990Z"
+        "! Last modified: 2026-11-05T22:09:43.939Z"
       ]
     },
     "asn-database": {
@@ -62,9 +62,9 @@
     },
     "meta-sukka": {
       "bytes": 34661,
-      "commit": "17833159009a1d9390bf0e80c8a47b391bb4dc9e",
+      "commit": "630653199388c677a030045b1744676a257992a9",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/17833159009a1d9390bf0e80c8a47b391bb4dc9e/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/630653199388c677a030045b1744676a257992a9/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
