@@ -52,14 +52,14 @@
   "review_sha256": "36dbaced73c24886823f973acf52faeb7d2291ce90763810c4e1dc73de7b39be",
   "sources": {
     "facebook": {
-      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
+      "commit": "de2d7d9f283911f2e24668893ae3d87e1008aecc",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/de2d7d9f283911f2e24668893ae3d87e1008aecc/data/facebook"
     },
     "instagram": {
-      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
+      "commit": "de2d7d9f283911f2e24668893ae3d87e1008aecc",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/de2d7d9f283911f2e24668893ae3d87e1008aecc/data/instagram"
     },
     "sukka": {
       "commit": "630653199388c677a030045b1744676a257992a9",
@@ -67,9 +67,9 @@
       "url": "https://raw.githubusercontent.com/SukkaW/Surge/630653199388c677a030045b1744676a257992a9/Source/non_ip/global.conf"
     },
     "whatsapp": {
-      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
+      "commit": "de2d7d9f283911f2e24668893ae3d87e1008aecc",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/de2d7d9f283911f2e24668893ae3d87e1008aecc/data/whatsapp"
     }
   },
   "sukka_selection": {

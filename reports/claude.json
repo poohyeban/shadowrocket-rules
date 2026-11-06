@@ -21,9 +21,9 @@
   "skipped": [],
   "sources": {
     "anthropic": {
-      "commit": "3895d9a3a76de2c1598a10c5fefc38e3481117fa",
+      "commit": "de2d7d9f283911f2e24668893ae3d87e1008aecc",
       "sha256": "48597d05d9206b7c841be6872c7ca954685a416d7e61c9316c017ed5f28c7053",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/3895d9a3a76de2c1598a10c5fefc38e3481117fa/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/de2d7d9f283911f2e24668893ae3d87e1008aecc/data/anthropic"
     }
   }
 }
