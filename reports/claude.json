@@ -3,27 +3,27 @@
     "399358": 3
   },
   "asn_source": {
-    "sha256": "81a3ae0bc347a4980766dc1d5434a3a9a8404cd371e62ee3a632ff2d4fdc0e3a",
+    "sha256": "21a6903ecc285ce3d187cb7f688b4f7ac52fee425c479c8e377d5b1c0127537a",
     "target_asns": [
       399358
     ],
     "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
   },
-  "domain_count": 19,
+  "domain_count": 21,
   "ip_count": 3,
   "outputs": {
-    "Claude/Claude-NoResolve.list": "016bcca409622697ae32c187454f7d690492b5808f9cd73e6408fd316db800ed",
-    "Claude/Claude.list": "cb8c097fb87ee0a94a3fb70701bc5882c0e14a57a806d6f314679f40c734d826",
+    "Claude/Claude-NoResolve.list": "4bcbe7ee999c6d62b5c8416ed0d08abb946aa6631e8dd0a9b1ff6902d0a1b169",
+    "Claude/Claude.list": "6b38d829fe10345b51db562c4ae8e40b2d9a849045cc9741c8a6a477ab16866a",
     "Claude/Sources/Claude-ASN-IP-NoResolve.list": "0a94f917c1389dadf8e0cfc64863b26b27ddb1b5bb634fdf19fb5c8eba9820ef",
     "Claude/Sources/Claude-ASN-IP.list": "600a5cef2e0715b8e9299d588b382958abbc78769eb95a3aebc3c75f31ecef5a",
-    "Claude/Sources/Claude-v2fly.list": "f4894c9047dc06bc6ed233d4816d673e64fb819d372c7f0f50ae28ea2f673802"
+    "Claude/Sources/Claude-v2fly.list": "a9b65b36f0eee363e6ffc8cf69287ecdf13ef749b3b7bd61a57adeb68e56dafd"
   },
   "skipped": [],
   "sources": {
     "anthropic": {
-      "commit": "16fd8005d390470e8523745c9fa631c9e767cc61",
-      "sha256": "48597d05d9206b7c841be6872c7ca954685a416d7e61c9316c017ed5f28c7053",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/16fd8005d390470e8523745c9fa631c9e767cc61/data/anthropic"
+      "commit": "1d1049b54971c86c9a3a5467d238a6a2ad7baf46",
+      "sha256": "59ad6a25a6d9759995777fe98f2cf30675199fad00546a0ffe027b95ec0776f0",
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/1d1049b54971c86c9a3a5467d238a6a2ad7baf46/data/anthropic"
     }
   }
 }
