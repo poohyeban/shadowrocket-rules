@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4603597,
-      "sha256": "7ad1a6680936b96a3b392ceade377f9de0c552d948d72328677ef9c58ec4da10",
+      "bytes": 4612381,
+      "sha256": "fd8a643530831deed2002045735aded1312d7fbac76703dfb65fb8fbb73a7783",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-10T00:23:47.825Z"
+        "! Last modified: 2026-11-10T22:08:50.712Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-11-06T08:15:29+00:00",
-      "bytes": 9057738,
+      "build_time": "2026-11-09T08:15:30+00:00",
+      "bytes": 9061334,
       "database_type": "GeoLite2-ASN",
-      "sha256": "21a6903ecc285ce3d187cb7f688b4f7ac52fee425c479c8e377d5b1c0127537a",
+      "sha256": "d5ee74c863271bed7066e731c880f38020bbe68f4cdd21d60a33f57195c30785",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -62,9 +62,9 @@
     },
     "meta-sukka": {
       "bytes": 34661,
-      "commit": "6cc5fac87a6e653c0d542210ef5f3590ba09e6c4",
+      "commit": "d3b5d42081ae134e9ebf3efa74be58c14fc3ec9c",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/6cc5fac87a6e653c0d542210ef5f3590ba09e6c4/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/d3b5d42081ae134e9ebf3efa74be58c14fc3ec9c/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
