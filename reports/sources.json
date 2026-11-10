@@ -38,27 +38,27 @@
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
-      "bytes": 140425,
-      "sha256": "3b20816e473f205ceb35eab4d8548e1a6226af508261b98cacb6f41854242f3a",
+      "bytes": 140446,
+      "sha256": "93f8609fc035d478747c218c5971dabef24f808ebff065f1c6909458dbb4f0ea",
       "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/release/cn.txt"
     },
     "claude-anthropic": {
       "bytes": 494,
-      "commit": "7322fea30b9783d9f9430cbdfcf4725dd23d4bc4",
+      "commit": "2b7ae3222f79e58e323a6b1c30c6618821068963",
       "sha256": "59ad6a25a6d9759995777fe98f2cf30675199fad00546a0ffe027b95ec0776f0",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/7322fea30b9783d9f9430cbdfcf4725dd23d4bc4/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2b7ae3222f79e58e323a6b1c30c6618821068963/data/anthropic"
     },
     "meta-facebook": {
       "bytes": 6391,
-      "commit": "7322fea30b9783d9f9430cbdfcf4725dd23d4bc4",
+      "commit": "2b7ae3222f79e58e323a6b1c30c6618821068963",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/7322fea30b9783d9f9430cbdfcf4725dd23d4bc4/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2b7ae3222f79e58e323a6b1c30c6618821068963/data/facebook"
     },
     "meta-instagram": {
       "bytes": 1326,
-      "commit": "7322fea30b9783d9f9430cbdfcf4725dd23d4bc4",
+      "commit": "2b7ae3222f79e58e323a6b1c30c6618821068963",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/7322fea30b9783d9f9430cbdfcf4725dd23d4bc4/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2b7ae3222f79e58e323a6b1c30c6618821068963/data/instagram"
     },
     "meta-sukka": {
       "bytes": 34661,
@@ -68,9 +68,9 @@
     },
     "meta-whatsapp": {
       "bytes": 303,
-      "commit": "7322fea30b9783d9f9430cbdfcf4725dd23d4bc4",
+      "commit": "2b7ae3222f79e58e323a6b1c30c6618821068963",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/7322fea30b9783d9f9430cbdfcf4725dd23d4bc4/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/2b7ae3222f79e58e323a6b1c30c6618821068963/data/whatsapp"
     },
     "openai-domains": {
       "bytes": 760,

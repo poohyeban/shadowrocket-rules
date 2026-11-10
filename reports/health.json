@@ -62,11 +62,11 @@
         "4": 7943,
         "6": 11500
       },
-      "rules": 26170,
-      "sha256": "76d9553a68c50ff4640005d01c4db89928e6c82395e6a016177e862c040d2248",
+      "rules": 26171,
+      "sha256": "0423b66cb576bcf24802cce6ec117f2051260b45d4703150f63cb335d8ec6352",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6683,
+        "DOMAIN-SUFFIX": 6684,
         "IP-CIDR": 19443
       }
     },
@@ -75,11 +75,11 @@
         "4": 7943,
         "6": 11500
       },
-      "rules": 26170,
-      "sha256": "5b04ce9807ebe77fbeeaad1cbad55e6054cc5bf6e10b27797194a11f957d10fc",
+      "rules": 26171,
+      "sha256": "85a7f6f5580fd76cda7620d792a28ffaa57422c68db40db84f37681bfef654b4",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6683,
+        "DOMAIN-SUFFIX": 6684,
         "IP-CIDR": 19443
       }
     },
@@ -107,11 +107,11 @@
     },
     "China/Sources/China-v2fly-Domain.list": {
       "ip_versions": {},
-      "rules": 6727,
-      "sha256": "8531ccfdd51bae52574866f433f5cb1a6b5652172f11262882bd18b5103e808d",
+      "rules": 6728,
+      "sha256": "e39d60d2dee1494c22db5ebbc4098930a0acee071318dc742542eb187343e080",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6683
+        "DOMAIN-SUFFIX": 6684
       }
     },
     "Claude/Claude-NoResolve.list": {
