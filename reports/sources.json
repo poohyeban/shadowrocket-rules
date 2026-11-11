@@ -10,11 +10,11 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4613440,
-      "sha256": "35fed328a38b891eef8d05c4d4eeadda4045a7f76d4ed08531530d80e2bd6bdf",
+      "bytes": 4657799,
+      "sha256": "0982f07a8c8dd4eff475bc9367b240668fc1c4bd0851d731168317e0c6d87d2b",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-11T00:24:20.206Z"
+        "! Last modified: 2026-11-11T22:09:04.110Z"
       ]
     },
     "asn-database": {
@@ -25,9 +25,9 @@
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
-      "bytes": 14530,
-      "creation_time": "2026-10-27T22:28:21.782457+00:00",
-      "sha256": "d2923918cc4cd6bf382f379b1601af871fbff66d8fefb81d4457f2ccba1ec959",
+      "bytes": 15614,
+      "creation_time": "2026-11-11T17:34:11.595417+00:00",
+      "sha256": "94bf8fd707be38b43a0bca3456e141dd8ba4d1e03aef18e70b97d00f4bad9ea1",
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
