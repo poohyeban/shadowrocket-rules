@@ -51,10 +51,10 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 189527,
-      "sha256": "14993c26d63b753e3a709739cc1e44d8de237dccfa5069b3d289cc93c27caeb0",
+      "rules": 189853,
+      "sha256": "a2b6954e8b828e81a1434e9f83bd2a4021787cc46e8b1f8120fc876a71b49d91",
       "types": {
-        "DOMAIN-SUFFIX": 189527
+        "DOMAIN-SUFFIX": 189853
       }
     },
     "China/China-NoResolve.list": {
@@ -223,28 +223,28 @@
     },
     "OpenAI/OpenAI-NoResolve.list": {
       "ip_versions": {
-        "4": 433
+        "4": 541
       },
-      "rules": 470,
-      "sha256": "50710a22afdc3a3bfc40e1a1f485c6a9ee780dafe22787585cc2c942a2435ffa",
+      "rules": 578,
+      "sha256": "253903c596f28ebacc89f6540e1af11ac2e63cf614be07c677035b46cb068870",
       "types": {
         "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
-        "IP-CIDR": 433
+        "IP-CIDR": 541
       }
     },
     "OpenAI/OpenAI.list": {
       "ip_versions": {
-        "4": 433
+        "4": 541
       },
-      "rules": 470,
-      "sha256": "35ff090451d812421cfe2332ebe4a60b2aa595926b4a0952927cc40b62153619",
+      "rules": 578,
+      "sha256": "fb52842d2a60a110b8cdbd962e0eab196668a837ebc1d55ddc7079f351482aeb",
       "types": {
         "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
-        "IP-CIDR": 433
+        "IP-CIDR": 541
       }
     },
     "OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list": {
@@ -278,22 +278,22 @@
     },
     "OpenAI/Sources/OpenAI-Voice-IP-NoResolve.list": {
       "ip_versions": {
-        "4": 432
+        "4": 540
       },
-      "rules": 432,
-      "sha256": "c18d2963f624c2716a73ef5eee1dd69c4619d232e0509b6a1eb8221361b6470a",
+      "rules": 540,
+      "sha256": "d614b3867a43e98f1b6cc3f469aa80da7e1614d993d94321566473285ac859d8",
       "types": {
-        "IP-CIDR": 432
+        "IP-CIDR": 540
       }
     },
     "OpenAI/Sources/OpenAI-Voice-IP.list": {
       "ip_versions": {
-        "4": 432
+        "4": 540
       },
-      "rules": 432,
-      "sha256": "8828c89770f21824eb089a180e122d2857bf8aad9c356a03c7ed77228cb8c81e",
+      "rules": 540,
+      "sha256": "c41562b7931ad00228d07d4117ed57149f69a989d9cd7cbdc97ab247e9cefaaf",
       "types": {
-        "IP-CIDR": 432
+        "IP-CIDR": 540
       }
     },
     "OpenAI/Sources/OpenAI-v2fly.list": {
