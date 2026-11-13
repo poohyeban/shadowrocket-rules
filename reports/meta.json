@@ -62,9 +62,9 @@
       "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/777d056afe68b2643c1ef15f80e7bde3dfa149b1/data/instagram"
     },
     "sukka": {
-      "commit": "35ac2b138e54bebad8cac474eb4280bc3a3be349",
+      "commit": "68ddf5cad4581085a0e59d15923579e358a3161e",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/35ac2b138e54bebad8cac474eb4280bc3a3be349/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/68ddf5cad4581085a0e59d15923579e358a3161e/Source/non_ip/global.conf"
     },
     "whatsapp": {
       "commit": "777d056afe68b2643c1ef15f80e7bde3dfa149b1",
