@@ -51,10 +51,10 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 190599,
-      "sha256": "048a6c981fc7370131c089098ca12389e85fbf412ae1ba0c070153c0d40eeaf5",
+      "rules": 190662,
+      "sha256": "e6289f0591a8e1cb1ee9f973ce387d2192f4ddf6eefe999b7b6d9f27af544582",
       "types": {
-        "DOMAIN-SUFFIX": 190599
+        "DOMAIN-SUFFIX": 190662
       }
     },
     "China/China-NoResolve.list": {
