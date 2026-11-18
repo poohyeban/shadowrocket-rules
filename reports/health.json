@@ -51,10 +51,10 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 189993,
-      "sha256": "9490490dc81aac6455124c4736d28c297650deeee062117e957a3f3b65b8ca16",
+      "rules": 190295,
+      "sha256": "74b5c033cd492c661dd21049878129c7e722b8c15f80c6c92819a05984c44c8d",
       "types": {
-        "DOMAIN-SUFFIX": 189993
+        "DOMAIN-SUFFIX": 190295
       }
     },
     "China/China-NoResolve.list": {
@@ -62,11 +62,11 @@
         "4": 7914,
         "6": 11499
       },
-      "rules": 26149,
-      "sha256": "d62c6f0bea28acb9dbf77471eca0f34eb61e1015c0677724d47ab64b7272dc8a",
+      "rules": 26170,
+      "sha256": "a499bb2de850f3e8ca634ddc28aed18891bf190affe1084bf6391d02ee6e86bc",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6692,
+        "DOMAIN-SUFFIX": 6713,
         "IP-CIDR": 19413
       }
     },
@@ -75,11 +75,11 @@
         "4": 7914,
         "6": 11499
       },
-      "rules": 26149,
-      "sha256": "9dcc61dd4d753664bc246b0c9091f169036bc15e43871f5176446193130a2e23",
+      "rules": 26170,
+      "sha256": "9c8e5178f7e3650eb98dd665e82dfe917da2adcdf907e920c3d1bb115c9ee2a1",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6692,
+        "DOMAIN-SUFFIX": 6713,
         "IP-CIDR": 19413
       }
     },
@@ -107,11 +107,11 @@
     },
     "China/Sources/China-v2fly-Domain.list": {
       "ip_versions": {},
-      "rules": 6736,
-      "sha256": "fc39769d7f23d2bcad7bd884bc337cf7c8b9d7f41796f89242154b55bb9cbc1b",
+      "rules": 6757,
+      "sha256": "742369d85b5f82450e3ac2b9ea78ae579ef5b876a018c07b0c217130628387c2",
       "types": {
         "DOMAIN": 44,
-        "DOMAIN-SUFFIX": 6692
+        "DOMAIN-SUFFIX": 6713
       }
     },
     "Claude/Claude-NoResolve.list": {
