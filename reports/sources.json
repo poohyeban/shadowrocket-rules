@@ -3,25 +3,25 @@
     "399358": 3
   },
   "openai_asn_prefix_counts": {
-    "401518": 1,
+    "401518": 2,
     "401864": 0
   },
   "reviewed_openai_exclusions_sha256": "217c813503b15318ea308f831032150cb4a2141bd32355bbbbaf667660ae1a90",
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4678367,
-      "sha256": "c8764819a7c871dd3e3d16f07a0e5555b554c0032e217442066e27f803744a9b",
+      "bytes": 4685311,
+      "sha256": "4f6f93643023138703994037293ecdfbe34be3e9d461e2bc5e2fc377c5f19414",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-19T02:13:16.899Z"
+        "! Last modified: 2026-11-19T22:09:14.529Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-11-15T08:15:32+00:00",
-      "bytes": 9066508,
+      "build_time": "2026-11-18T08:15:16+00:00",
+      "bytes": 9072814,
       "database_type": "GeoLite2-ASN",
-      "sha256": "6ab0dcb6017b0e5f356d4ac1607427fc5d4da7a8465cb1233e8a9c04df1b4885",
+      "sha256": "ba7c4964c71b51d28dc23eefd5e4376801bf90472d26f766648aae003af9388e",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -31,10 +31,10 @@
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
-      "build_time": "2026-11-13T17:11:28+00:00",
-      "bytes": 3396552,
+      "build_time": "2026-11-17T16:20:58+00:00",
+      "bytes": 3402189,
       "database_type": "GeoLite2-Country",
-      "sha256": "c3ea0f8763a72c081d4abaf3366270d46414c55f6e36321621c6b59d53f9b17c",
+      "sha256": "33c6af7a3362c35876ed6192a958734402ab8cdd9d71f97dfbda333eb71e1c00",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
@@ -62,9 +62,9 @@
     },
     "meta-sukka": {
       "bytes": 34661,
-      "commit": "a8727444cd47a35464a7f4b74ac669c51e68c2d3",
+      "commit": "32f900e8759db8276cf6c9dcd0cc81f19c61c58f",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/a8727444cd47a35464a7f4b74ac669c51e68c2d3/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/32f900e8759db8276cf6c9dcd0cc81f19c61c58f/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,

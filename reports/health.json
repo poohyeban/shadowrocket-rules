@@ -51,58 +51,58 @@
   "files": {
     "AdGuard/Ad-Domain.list": {
       "ip_versions": {},
-      "rules": 190366,
-      "sha256": "d70ed40922f72a4eea3bb304405c44b013e5b3ed44c6ca58e22e32039fad297f",
+      "rules": 190670,
+      "sha256": "2bbf3a9937f4f2dd3419581f68bf8dd5cff84d6f4317f1a30cf5c8bd57b509fa",
       "types": {
-        "DOMAIN-SUFFIX": 190366
+        "DOMAIN-SUFFIX": 190670
       }
     },
     "China/China-NoResolve.list": {
       "ip_versions": {
-        "4": 7914,
-        "6": 11499
+        "4": 7915,
+        "6": 11501
       },
-      "rules": 26170,
-      "sha256": "a499bb2de850f3e8ca634ddc28aed18891bf190affe1084bf6391d02ee6e86bc",
+      "rules": 26173,
+      "sha256": "de0f36f9be8ca700a16535614c2bab66abcaf151ee795f4db2f4a32f241116d6",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6713,
-        "IP-CIDR": 19413
+        "IP-CIDR": 19416
       }
     },
     "China/China.list": {
       "ip_versions": {
-        "4": 7914,
-        "6": 11499
+        "4": 7915,
+        "6": 11501
       },
-      "rules": 26170,
-      "sha256": "9c8e5178f7e3650eb98dd665e82dfe917da2adcdf907e920c3d1bb115c9ee2a1",
+      "rules": 26173,
+      "sha256": "e83d1e60300b5322a877fae3be8737a48e9a397dc33b9b215a6a1e9ed2d8dd89",
       "types": {
         "DOMAIN": 44,
         "DOMAIN-SUFFIX": 6713,
-        "IP-CIDR": 19413
+        "IP-CIDR": 19416
       }
     },
     "China/Sources/China-GeoIP-NoResolve.list": {
       "ip_versions": {
-        "4": 7914,
-        "6": 11499
+        "4": 7915,
+        "6": 11501
       },
-      "rules": 19413,
-      "sha256": "f2a5a12d78d3a4b594c414dc53025fba30ce2bed1a343060e587ff4ee3f9e3fa",
+      "rules": 19416,
+      "sha256": "653aa5462890894864efbfe9404bf99f7b1607969411625a4a5c7cf080402deb",
       "types": {
-        "IP-CIDR": 19413
+        "IP-CIDR": 19416
       }
     },
     "China/Sources/China-GeoIP.list": {
       "ip_versions": {
-        "4": 7914,
-        "6": 11499
+        "4": 7915,
+        "6": 11501
       },
-      "rules": 19413,
-      "sha256": "cac417970ac9a77364cfe14ba9ffa3b2929bfd570034be5ccb791541024b2012",
+      "rules": 19416,
+      "sha256": "7cd00ec3ff723653f8ec1edef377b71251a1137df7222700376374026648f031",
       "types": {
-        "IP-CIDR": 19413
+        "IP-CIDR": 19416
       }
     },
     "China/Sources/China-v2fly-Domain.list": {
@@ -223,48 +223,48 @@
     },
     "OpenAI/OpenAI-NoResolve.list": {
       "ip_versions": {
-        "4": 412
+        "4": 413
       },
-      "rules": 449,
-      "sha256": "31268bd4f31d1468b36d6d6679e524b2ec832e473b29c565bca9585c6f0d2206",
+      "rules": 450,
+      "sha256": "00b926c49e93495b48fa6f806d2ee8b2d630727bc41522ec323de7f8adbeb3cd",
       "types": {
         "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
-        "IP-CIDR": 412
+        "IP-CIDR": 413
       }
     },
     "OpenAI/OpenAI.list": {
       "ip_versions": {
-        "4": 412
+        "4": 413
       },
-      "rules": 449,
-      "sha256": "282171b1c22dff28fc091eb95a446590769d447320c6a2327d841cad12ebfdfb",
+      "rules": 450,
+      "sha256": "7c92a931c7acd11702411c6dd29506abb76470dec73121b8fc4610578b3d5915",
       "types": {
         "DOMAIN": 17,
         "DOMAIN-SUFFIX": 14,
         "DOMAIN-WILDCARD": 6,
-        "IP-CIDR": 412
+        "IP-CIDR": 413
       }
     },
     "OpenAI/Sources/OpenAI-ASN-IP-NoResolve.list": {
       "ip_versions": {
-        "4": 1
+        "4": 2
       },
-      "rules": 1,
-      "sha256": "54ddd85d0ae183a728e6ee11bd1b96f8ccfd89baa53d9e45eaf26c01f52b0c6f",
+      "rules": 2,
+      "sha256": "fb47174d83a865b6ad09481cc5d2ea5d5a95a93ab307eda8a76964085d08757f",
       "types": {
-        "IP-CIDR": 1
+        "IP-CIDR": 2
       }
     },
     "OpenAI/Sources/OpenAI-ASN-IP.list": {
       "ip_versions": {
-        "4": 1
+        "4": 2
       },
-      "rules": 1,
-      "sha256": "7faf16119bac5abc6da0a546f1d13e3fc39f37713873c971fd79d0456ec7895b",
+      "rules": 2,
+      "sha256": "c44507af9004a4c0b13cc0b94fc3ca415c0a4d7ba161c8db27485d12906832ba",
       "types": {
-        "IP-CIDR": 1
+        "IP-CIDR": 2
       }
     },
     "OpenAI/Sources/OpenAI-Official-Domain.list": {
