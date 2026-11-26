@@ -10,18 +10,18 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4760742,
-      "sha256": "de45600fb30483bbb2c588b1ee3f20e0ed7fcbca3f8dd2079223a7c87bb8d8b3",
+      "bytes": 4767643,
+      "sha256": "9c8a2453c15237fb7baebcdf0fcc14a9f3ee1966353dbdfd05677e39e8b55caf",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-25T04:12:25.188Z"
+        "! Last modified: 2026-11-26T00:24:49.684Z"
       ]
     },
     "asn-database": {
-      "build_time": "2026-11-21T08:15:07+00:00",
-      "bytes": 9084214,
+      "build_time": "2026-11-24T08:15:25+00:00",
+      "bytes": 9079903,
       "database_type": "GeoLite2-ASN",
-      "sha256": "f62180496c7219698faa9fe7b6c1aa3aba089800473818b71ad88c22e12b4a22",
+      "sha256": "26946dd3729821d9994a8f2f9e7570f55e5f436208c5577ceb688d31d57eadb4",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-ASN.mmdb"
     },
     "chatgpt-voice": {
@@ -31,10 +31,10 @@
       "url": "https://openai.com/chatgpt-voice.json"
     },
     "china-country": {
-      "build_time": "2026-11-20T17:00:00+00:00",
-      "bytes": 3411761,
+      "build_time": "2026-11-24T06:45:53+00:00",
+      "bytes": 3410892,
       "database_type": "GeoLite2-Country",
-      "sha256": "6e72827d6291f3a3b8e94679d707003f6eca43bb5aca88e88c4b50120b96abbc",
+      "sha256": "e256d9c92775f33b57579df55765c2fa1ea656c03c2461861e0f34260816be14",
       "url": "https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb"
     },
     "china-domains": {
@@ -44,21 +44,21 @@
     },
     "claude-anthropic": {
       "bytes": 494,
-      "commit": "98c43cad27fa8f02043858763709fe4a95432ffb",
+      "commit": "e5f669692b33c189efc96cb1a972c69b390bbbc8",
       "sha256": "59ad6a25a6d9759995777fe98f2cf30675199fad00546a0ffe027b95ec0776f0",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/98c43cad27fa8f02043858763709fe4a95432ffb/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e5f669692b33c189efc96cb1a972c69b390bbbc8/data/anthropic"
     },
     "meta-facebook": {
       "bytes": 6391,
-      "commit": "98c43cad27fa8f02043858763709fe4a95432ffb",
+      "commit": "e5f669692b33c189efc96cb1a972c69b390bbbc8",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/98c43cad27fa8f02043858763709fe4a95432ffb/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e5f669692b33c189efc96cb1a972c69b390bbbc8/data/facebook"
     },
     "meta-instagram": {
       "bytes": 1326,
-      "commit": "98c43cad27fa8f02043858763709fe4a95432ffb",
+      "commit": "e5f669692b33c189efc96cb1a972c69b390bbbc8",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/98c43cad27fa8f02043858763709fe4a95432ffb/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e5f669692b33c189efc96cb1a972c69b390bbbc8/data/instagram"
     },
     "meta-sukka": {
       "bytes": 34661,
@@ -68,9 +68,9 @@
     },
     "meta-whatsapp": {
       "bytes": 303,
-      "commit": "98c43cad27fa8f02043858763709fe4a95432ffb",
+      "commit": "e5f669692b33c189efc96cb1a972c69b390bbbc8",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/98c43cad27fa8f02043858763709fe4a95432ffb/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/e5f669692b33c189efc96cb1a972c69b390bbbc8/data/whatsapp"
     },
     "openai-domains": {
       "bytes": 760,
