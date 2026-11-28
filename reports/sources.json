@@ -10,11 +10,11 @@
   "reviewed_openai_snapshot_sha256": "69615b1c5e6702c1cae9d05520faa0ac4c166b1b6ad2e452b68b7909cf2270fb",
   "sources": {
     "adguard": {
-      "bytes": 4777021,
-      "sha256": "507ba0b1b235adfbf397904606aae727e11446a23ef19d3306e5f97f3aa6d9a1",
+      "bytes": 4785331,
+      "sha256": "25703d5b5a85bd8db8f3f4493fe217e476a1a3c92ea3678ba9486ec6ac886bbd",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "version_headers": [
-        "! Last modified: 2026-11-27T02:14:31.313Z"
+        "! Last modified: 2026-11-28T00:23:44.530Z"
       ]
     },
     "asn-database": {
@@ -44,33 +44,33 @@
     },
     "claude-anthropic": {
       "bytes": 494,
-      "commit": "99b3169c537639873b56499d3412232b52b6b59b",
+      "commit": "f68dab92e2ce656bbd81a4ae424de79b179f0f77",
       "sha256": "59ad6a25a6d9759995777fe98f2cf30675199fad00546a0ffe027b95ec0776f0",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/99b3169c537639873b56499d3412232b52b6b59b/data/anthropic"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/f68dab92e2ce656bbd81a4ae424de79b179f0f77/data/anthropic"
     },
     "meta-facebook": {
       "bytes": 6391,
-      "commit": "99b3169c537639873b56499d3412232b52b6b59b",
+      "commit": "f68dab92e2ce656bbd81a4ae424de79b179f0f77",
       "sha256": "bd860c04a95c82afa1aa86c166a50eb561a952c6915257f941fa6d58a0431da9",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/99b3169c537639873b56499d3412232b52b6b59b/data/facebook"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/f68dab92e2ce656bbd81a4ae424de79b179f0f77/data/facebook"
     },
     "meta-instagram": {
       "bytes": 1326,
-      "commit": "99b3169c537639873b56499d3412232b52b6b59b",
+      "commit": "f68dab92e2ce656bbd81a4ae424de79b179f0f77",
       "sha256": "e392526b75e27218f874590d0db99b5e009fb0b7679095f0eac48a4ee3fb6413",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/99b3169c537639873b56499d3412232b52b6b59b/data/instagram"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/f68dab92e2ce656bbd81a4ae424de79b179f0f77/data/instagram"
     },
     "meta-sukka": {
       "bytes": 34661,
-      "commit": "03e8353579dee3d9dd47c3e253db7b81ccad6f3b",
+      "commit": "23305dc014debdda1a59d8c3b7c3586d59d41862",
       "sha256": "e25c537e65d9ceb738677f44a3546c7cf90089028682f1cd807d06051ff6720e",
-      "url": "https://raw.githubusercontent.com/SukkaW/Surge/03e8353579dee3d9dd47c3e253db7b81ccad6f3b/Source/non_ip/global.conf"
+      "url": "https://raw.githubusercontent.com/SukkaW/Surge/23305dc014debdda1a59d8c3b7c3586d59d41862/Source/non_ip/global.conf"
     },
     "meta-whatsapp": {
       "bytes": 303,
-      "commit": "99b3169c537639873b56499d3412232b52b6b59b",
+      "commit": "f68dab92e2ce656bbd81a4ae424de79b179f0f77",
       "sha256": "62def09a533350c9e5259d1d498ed1da1689ff174f436f51c065260f21f037d2",
-      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/99b3169c537639873b56499d3412232b52b6b59b/data/whatsapp"
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/f68dab92e2ce656bbd81a4ae424de79b179f0f77/data/whatsapp"
     },
     "openai-domains": {
       "bytes": 760,
